@@ -1,0 +1,21 @@
+This video is about creating a simple CPU (Central Processing Unit) on an FPGA (Field-Programmable Gate Array). 
+
+The video walks the viewer through the design process, implementation, and testing of the CPU. The CPU is able to read, modify, and save data. 
+
+Here are the major steps involved in creating the CPU:
+* Design the control block: The control block is responsible for controlling the flow of data through the CPU.
+* Design the ALU (Arithmetic Logic Unit): The ALU performs arithmetic and logical operations on data.
+* Create the schematic: The schematic is a diagram that shows how the different components of the CPU are connected.
+* Implement the design in an FPGA: The FPGA is a programmable chip that can be used to implement the design of the CPU.
+* Test the CPU: The CPU is tested to make sure that it is functioning correctly.
+
+The video also discusses some of the limitations of the CPU, such as the fact that it only has 256 bytes of memory. The video concludes by discussing some ways to improve the CPU, such as adding more instructions and more memory.
+
+Here are some additional details from the video:
+* The CPU uses a clock signal to synchronize its operations.
+* The CPU can be programmed using a series of assembly language instructions.
+* The video includes a test schematic that can be used to test the CPU.
+* The video discusses the importance of using bypass capacitors on the power pins of the ICs.
+
+I hope this summary is helpful!
+http://googleusercontent.com/youtube_content/26
