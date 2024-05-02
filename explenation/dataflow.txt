@@ -1,0 +1,12 @@
+This video is about building a test circuit to control the flow of data between registers inside a CPU. [1]
+
+The speaker, Phillip Lett, is building a CPU from scratch on a Field Programmable Gate Array (FPGA) [1]. In the previous episode, he designed a four-input multiplexer to control the data flow onto the internal data bus [1]. In this episode, he will build a test circuit and verify if data can be moved between the registers inside the CPU. [1]
+
+The video starts with Phillip explaining how he fixed an error in the schematic design from the previous episode [2]. He then created a new schematic file to incorporate an I/O buffer primitive [2]. He added an inverter to the output enable pin because it is active low [3]. He also added I/O markers for the control lines and temporarily connected the accumulator to the data bus for demonstration [3].
+
+Next, Phillip described the test schematic. It has the four lower bits of the address bus connected to LEDs to monitor the output from the address register [4]. The clock will be connected to a monostable clock, and there are four LEDs connected to the data bus to monitor its state [4]. There are also four DIP switches buffered through a 74HC245 transceiver to input data [4].
+
+After explaining the schematic, Phillip went through wiring the circuit [5]. He then programmed the Spartan and added labels for each of the control lines [5]. He verified that the data can be moved between registers and the external memory by setting different control lines [5, 6, 7].
+
+In conclusion, Phillip successfully built a test circuit to control the flow of data between registers inside the CPU. He was able to move data between the accumulator, data register, program counter, and memory bus by setting different control lines [8]. In the next video, he will design the arithmetic logic unit (ALU) to add computational power to the CPU [8].
+http://googleusercontent.com/youtube_content/6

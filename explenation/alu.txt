@@ -1,0 +1,8 @@
+This video is about how to create a CPU in an FPGA. In the previous episode, the creator went over the control of the various registers in the CPU and demonstrated moving data into and out of the data bus as well as moving data between the registers. In this episode, the creator dives into the ALU (arithmetic logic unit) which is the workhorse of the CPU where all the math and logic functions will happen. [1]
+
+The video starts with a four-bit ALU with four functions and also adding the carry and zero flags and shows its operation. Then the creator adds it to the CPU design and tests it. [1]
+
+Later in the video, the creator creates an 8-bit version of the ALU and adds it to the CPU design. The ALU is tested with the accumulator. The accumulator is one input to the ALU and the other can come from another register or external memory. [2]
+
+The video ends with successfully testing the ALU, flags and the accumulator. The creator mentioned that in the next video, he will dive into the heart of the CPU and look at the control block which takes the instruction and coordinates all the actions at the right time. [3]
+http://googleusercontent.com/youtube_content/10

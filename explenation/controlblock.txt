@@ -1,0 +1,20 @@
+The video is about how to create a control block for a CPU in an FPGA.
+
+The control block is the most complicated part of the CPU and it is responsible for synchronizing all the other parts of the CPU [1]. It fetches instructions from memory, decodes them, and then sends control signals to the other parts of the CPU to execute the instructions [1].
+
+The video goes through the design of a control block for a simple CPU that can understand five instructions: load accumulator, add, store accumulator, jump, and complement accumulator [18]. The control block uses a three-bit counter to keep track of which state it is currently in [8]. There are eight possible states, which is more than enough for any of the five instructions [8]. The value of each control line is set by combining the current state count with the current instruction [9].
+
+The video also shows how to test the control block using a schematic and an FPGA [19]. The schematic shows how the different parts of the control block are connected together [19]. The FPGA is a programmable chip that can be used to implement the control block design [19].
+
+Here are the main parts of the control block and what they do:
+* State counter: Keeps track of which state the control block is currently in [8].
+* Instruction register: Stores the instruction that is currently being fetched from memory [18].
+* ALU control lines: Control the ALU (arithmetic logic unit) to perform the correct operation [18].
+* Memory address register: Stores the address of the memory location that is being accessed [18].
+* Read/write lines: Control whether the CPU is reading from or writing to memory [18].
+* Accumulator load line: Controls whether the accumulator is loaded with data from the ALU [18].
+* Flags load line: Controls whether the flags register is loaded with the results of the ALU operation [18].
+* Clear line: Resets the state counter to zero at the end of each instruction [18].
+
+I hope this summary is helpful!
+http://googleusercontent.com/youtube_content/15

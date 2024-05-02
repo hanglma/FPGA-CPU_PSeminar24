@@ -1,0 +1,12 @@
+This video is about how to create a CPU in an FPGA, specifically focusing on multiplexers.
+
+The video starts with an introduction to multiplexers and how they are used to control data flow. A multiplexer is a device that allows one of several data inputs to be selected for output. The selection is controlled by a set of select lines.
+
+The video then shows how to create a simple 4-to-1 multiplexer in Verilog. The Verilog code uses an always statement to select the appropriate input based on the value of the select lines.
+
+The video then demonstrates how to use the multiplexer in a simple circuit with DIP switches and an LED. The DIP switches are used to provide the data inputs and the select lines, and the LED is used to show the output of the multiplexer.
+
+Finally, the video shows how to add the multiplexer to the design of a simple CPU. The multiplexer is used to control access to the internal data bus of the CPU. This ensures that only one component can drive the data bus at a time, preventing bus contention.
+
+The video ends with a preview of the next video, which will show how to verify the design of the CPU so far.
+http://googleusercontent.com/youtube_content/1
