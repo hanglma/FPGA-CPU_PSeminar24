@@ -1,0 +1,46 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "cpu_IO_buf_0_0",
+    "cell_name": "IO_buf_0",
+    "component_reference": "xilinx.com:module_ref:IO_buf:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../project_1.gen/sources_1/bd/cpu/ip/cpu_IO_buf_0_0",
+    "parameters": {
+      "component_parameters": {
+        "Component_Name": [ { "value": "cpu_IO_buf_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "artix7" } ],
+        "BASE_BOARD_PART": [ { "value": "digilentinc.com:basys3:part0:1.2" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7a35t" } ],
+        "PACKAGE": [ { "value": "cpg236" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../project_1.gen/sources_1/bd/cpu/ip/cpu_IO_buf_0_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2023.2" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "oe": [ { "direction": "in" } ],
+        "DataIn": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
+        "DataBus": [ { "direction": "inout", "size_left": "7", "size_right": "0" } ],
+        "DataOut": [ { "direction": "out", "size_left": "7", "size_right": "0" } ]
+      }
+    }
+  }
+}
