@@ -1,9 +1,9 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x91432D0CB198EBF6",
-      "device": "xc7a35tcpg236-1",
-      "gen_directory": "../../../../project_1.gen/sources_1/bd/cpu",
+      "boundary_crc": "0x587C8795AA77707A",
+      "device": "xc7a35ticsg324-1L",
+      "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
@@ -63,11 +63,6 @@
         }
       },
       "AddressBus": {
-        "direction": "O",
-        "left": "7",
-        "right": "0"
-      },
-      "AdressBus": {
         "type": "data",
         "direction": "O",
         "left": "7",
@@ -91,7 +86,7 @@
           }
         }
       },
-      "testbenchData": {
+      "data_bus_injection": {
         "type": "data",
         "direction": "I",
         "left": "7",
@@ -103,16 +98,21 @@
           }
         }
       },
-      "testbenchMUXSelect": {
+      "MUX_select": {
         "direction": "I",
         "left": "1",
         "right": "0"
       },
-      "testbenchARLoad": {
+      "AR_load": {
         "direction": "I"
       },
       "testbenchIOBUF_enable": {
         "direction": "I"
+      },
+      "DataBus": {
+        "direction": "O",
+        "left": "0",
+        "right": "7"
       }
     },
     "components": {
@@ -120,7 +120,7 @@
         "vlnv": "xilinx.com:module_ref:register_PC:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_register_PC_0_0",
-        "xci_path": "ip\\cpu_register_PC_0_0\\cpu_register_PC_0_0.xci",
+        "xci_path": "ip/cpu_register_PC_0_0/cpu_register_PC_0_0.xci",
         "inst_hier_path": "register_PC",
         "reference_info": {
           "ref_type": "hdl",
@@ -178,7 +178,7 @@
         "vlnv": "xilinx.com:module_ref:register_base:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_register_base_0_0",
-        "xci_path": "ip\\cpu_register_base_0_0\\cpu_register_base_0_0.xci",
+        "xci_path": "ip/cpu_register_base_0_0/cpu_register_base_0_0.xci",
         "inst_hier_path": "register_ACC",
         "reference_info": {
           "ref_type": "hdl",
@@ -233,7 +233,7 @@
         "vlnv": "xilinx.com:module_ref:register_base:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_register_base_1_0",
-        "xci_path": "ip\\cpu_register_base_1_0\\cpu_register_base_1_0.xci",
+        "xci_path": "ip/cpu_register_base_1_0/cpu_register_base_1_0.xci",
         "inst_hier_path": "register_DR",
         "reference_info": {
           "ref_type": "hdl",
@@ -288,7 +288,7 @@
         "vlnv": "xilinx.com:module_ref:register_base:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_register_base_1_1",
-        "xci_path": "ip\\cpu_register_base_1_1\\cpu_register_base_1_1.xci",
+        "xci_path": "ip/cpu_register_base_1_1/cpu_register_base_1_1.xci",
         "inst_hier_path": "register_IR",
         "reference_info": {
           "ref_type": "hdl",
@@ -343,7 +343,7 @@
         "vlnv": "xilinx.com:module_ref:register_base:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_register_base_2_0",
-        "xci_path": "ip\\cpu_register_base_2_0\\cpu_register_base_2_0.xci",
+        "xci_path": "ip/cpu_register_base_2_0/cpu_register_base_2_0.xci",
         "inst_hier_path": "register_AR",
         "reference_info": {
           "ref_type": "hdl",
@@ -398,7 +398,7 @@
         "vlnv": "xilinx.com:module_ref:MUX:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_MUX_0_0",
-        "xci_path": "ip\\cpu_MUX_0_0\\cpu_MUX_0_0.xci",
+        "xci_path": "ip/cpu_MUX_0_0/cpu_MUX_0_0.xci",
         "inst_hier_path": "MUX_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -448,7 +448,7 @@
         "vlnv": "xilinx.com:module_ref:IO_buf:1.0",
         "ip_revision": "1",
         "xci_name": "cpu_IO_buf_0_0",
-        "xci_path": "ip\\cpu_IO_buf_0_0\\cpu_IO_buf_0_0.xci",
+        "xci_path": "ip/cpu_IO_buf_0_0/cpu_IO_buf_0_0.xci",
         "inst_hier_path": "IO_buf_0",
         "reference_info": {
           "ref_type": "hdl",
@@ -491,7 +491,8 @@
           "register_DR/Input",
           "register_PC/Input",
           "register_AR/Input",
-          "IO_buf_0/DataIn"
+          "IO_buf_0/DataIn",
+          "DataBus"
         ]
       },
       "Net1": {
@@ -523,7 +524,7 @@
       "register_AR_Output": {
         "ports": [
           "register_AR/Output",
-          "AdressBus"
+          "AddressBus"
         ]
       },
       "register_DR_Output": {
@@ -540,13 +541,13 @@
       },
       "testbenchARLoad_1": {
         "ports": [
-          "testbenchARLoad",
+          "AR_load",
           "register_AR/load"
         ]
       },
       "testbenchData_1": {
         "ports": [
-          "testbenchData",
+          "data_bus_injection",
           "MUX_0/A"
         ]
       },
@@ -558,7 +559,7 @@
       },
       "testbenchMUXSelect_1": {
         "ports": [
-          "testbenchMUXSelect",
+          "MUX_select",
           "MUX_0/sel"
         ]
       }

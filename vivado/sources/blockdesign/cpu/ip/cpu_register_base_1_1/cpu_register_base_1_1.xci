@@ -5,29 +5,29 @@
     "cell_name": "register_IR",
     "component_reference": "xilinx.com:module_ref:register_base:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../project_1.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1",
+    "gen_directory": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "cpu_register_base_1_1", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "artix7" } ],
-        "BASE_BOARD_PART": [ { "value": "digilentinc.com:basys3:part0:1.2" } ],
+        "BASE_BOARD_PART": [ { "value": "digilentinc.com:arty-a7-35:part0:1.1" } ],
         "BOARD_CONNECTIONS": [ { "value": "" } ],
-        "DEVICE": [ { "value": "xc7a35t" } ],
-        "PACKAGE": [ { "value": "cpg236" } ],
+        "DEVICE": [ { "value": "xc7a35ti" } ],
+        "PACKAGE": [ { "value": "csg324" } ],
         "PREFHDL": [ { "value": "VERILOG" } ],
         "SILICON_REVISION": [ { "value": "" } ],
-        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
-        "SPEEDGRADE": [ { "value": "-1" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "VERILOG" } ],
+        "SPEEDGRADE": [ { "value": "-1L" } ],
         "STATIC_POWER": [ { "value": "" } ],
-        "TEMPERATURE_GRADE": [ { "value": "" } ]
+        "TEMPERATURE_GRADE": [ { "value": "I" } ]
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../project_1.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2023.2" } ],
