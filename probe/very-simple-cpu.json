@@ -68,7 +68,7 @@
                     "id": "overview",
                     "title": "Overview",
 
-                    "layout_tiles_x": 12,
+                    "layout_tiles_x": 8,
                     "layout_tiles_y": 2,
 
                     "widgets": [
@@ -155,6 +155,38 @@
                                 "$bits": {
                                     "dir": "TIPO",
                                     "start": 13
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:mem-cs",
+                            "widget": "pprobe-basic::switch",
+
+                            "layout": {
+                                "pos_x": 4,
+                                "pos_y": 2
+                            },
+                            "config": { 
+                                "label": "Memory ChipSelect",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 14
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:mem-we",
+                            "widget": "pprobe-basic::switch",
+
+                            "layout": {
+                                "pos_x": 5,
+                                "pos_y": 2
+                            },
+                            "config": { 
+                                "label": "Memory WriteEnable",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 15
                                 }
                             }
                         }

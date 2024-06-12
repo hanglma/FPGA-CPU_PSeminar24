@@ -38,16 +38,26 @@ module top(
         .clk
     );
     
+    RAM ram(
+        .clk,
+        .WE(io.Memory_WE),
+        .CS(io.Memory_CS)
+    );
+    
     cpu core0(
         .clk,
         .rst(io.reset),
         
         .DataBus(io.DataBus),
-        .AddressBus(io.AddressBus),
+        .AddressBus(ram.address),
+        .MemoryWriteBus(ram.WriteDataBus),
+        .MemoryReadBus(ram.ReadDataBus),
         
         .MUX_select(io.MUX_select),
         .data_bus_injection(io.data_bus_injection),
         .AR_load(io.AR_load)
     );
+    
+    assign io.AddressBus = core0.AddressBus;
     
 endmodule

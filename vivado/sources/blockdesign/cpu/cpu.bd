@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x587C8795AA77707A",
+      "boundary_crc": "0x896F488D5AA22180",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
@@ -16,8 +16,7 @@
       "register_DR": "",
       "register_IR": "",
       "register_AR": "",
-      "MUX_0": "",
-      "IO_buf_0": ""
+      "MUX_0": ""
     },
     "ports": {
       "clk": {
@@ -74,18 +73,6 @@
           }
         }
       },
-      "MemoryBus": {
-        "type": "data",
-        "direction": "IO",
-        "left": "7",
-        "right": "0",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": "undef",
-            "value_src": "default"
-          }
-        }
-      },
       "data_bus_injection": {
         "type": "data",
         "direction": "I",
@@ -113,6 +100,22 @@
         "direction": "O",
         "left": "0",
         "right": "7"
+      },
+      "MemoryWriteBus": {
+        "direction": "O",
+        "left": "0",
+        "right": "7"
+      },
+      "MemoryReadBus": {
+        "direction": "I",
+        "left": "7",
+        "right": "0"
+      },
+      "MemoryCS": {
+        "direction": "O"
+      },
+      "MemoryWE": {
+        "direction": "O"
       }
     },
     "components": {
@@ -443,44 +446,12 @@
             "right": "7"
           }
         }
-      },
-      "IO_buf_0": {
-        "vlnv": "xilinx.com:module_ref:IO_buf:1.0",
-        "ip_revision": "1",
-        "xci_name": "cpu_IO_buf_0_0",
-        "xci_path": "ip/cpu_IO_buf_0_0/cpu_IO_buf_0_0.xci",
-        "inst_hier_path": "IO_buf_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "IO_buf",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "oe": {
-            "direction": "I"
-          },
-          "DataIn": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "DataBus": {
-            "direction": "IO",
-            "left": "7",
-            "right": "0"
-          },
-          "DataOut": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
       }
     },
     "nets": {
-      "IO_buf_0_DataOut": {
+      "MemoryReadBus_1": {
         "ports": [
-          "IO_buf_0/DataOut",
+          "MemoryReadBus",
           "MUX_0/D"
         ]
       },
@@ -491,8 +462,8 @@
           "register_DR/Input",
           "register_PC/Input",
           "register_AR/Input",
-          "IO_buf_0/DataIn",
-          "DataBus"
+          "DataBus",
+          "MemoryWriteBus"
         ]
       },
       "Net1": {
@@ -513,12 +484,6 @@
           "register_DR/rst",
           "register_PC/rst",
           "register_AR/rst"
-        ]
-      },
-      "Net3": {
-        "ports": [
-          "MemoryBus",
-          "IO_buf_0/DataBus"
         ]
       },
       "register_AR_Output": {
@@ -549,12 +514,6 @@
         "ports": [
           "data_bus_injection",
           "MUX_0/A"
-        ]
-      },
-      "testbenchIOBUF_enable_1": {
-        "ports": [
-          "testbenchIOBUF_enable",
-          "IO_buf_0/oe"
         ]
       },
       "testbenchMUXSelect_1": {

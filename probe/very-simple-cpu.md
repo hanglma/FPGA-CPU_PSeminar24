@@ -10,6 +10,8 @@ Bit Index | Signal Name
 3:4 | MUX_select
 5:12 | data_bus_injection
 13 | AR_load
+14 | Memory_CS
+15 | Memory_WE
 
 ## Target Output
 

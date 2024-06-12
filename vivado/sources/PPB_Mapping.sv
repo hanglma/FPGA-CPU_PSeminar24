@@ -11,7 +11,9 @@ module PPB_Mapping(
     output reset,
     output reg [1:0] MUX_select,
     output [7:0] data_bus_injection,
-    output AR_load
+    output AR_load,
+    output Memory_CS,
+    output Memory_WE
     
     );
     
@@ -24,6 +26,8 @@ module PPB_Mapping(
     assign reset = device_inputs[2];
     assign data_bus_injection = device_inputs[5:12];
     assign AR_load = device_inputs[13];
+    assign Memory_CS = device_inputs[14];
+    assign Memory_WE = device_inputs[15];
     
     assign device_outputs[0:7] = DataBus;
     assign device_outputs[8:15] = AddressBus;
