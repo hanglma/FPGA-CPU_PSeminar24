@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.89464",
-   "Default View_TopLeft":"814,337",
+   "Default View_ScaleFactor":"1.16629",
+   "Default View_TopLeft":"565,-546",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
@@ -9,38 +9,54 @@ preplace port port-id_clk -pg 1 -lvl 0 -x -20 -y -360 -defaultsOSRD
 preplace port port-id_rst -pg 1 -lvl 0 -x -20 -y -330 -defaultsOSRD
 preplace port port-id_AR_load -pg 1 -lvl 0 -x -20 -y 450 -defaultsOSRD
 preplace port port-id_testbenchIOBUF_enable -pg 1 -lvl 0 -x -20 -y 20 -defaultsOSRD
-preplace port port-id_MemoryCS -pg 1 -lvl 3 -x 1120 -y 300 -defaultsOSRD
-preplace port port-id_MemoryWE -pg 1 -lvl 3 -x 1120 -y 260 -defaultsOSRD
-preplace portBus AddressBus -pg 1 -lvl 3 -x 1120 -y 440 -defaultsOSRD
-preplace portBus data_bus_injection -pg 1 -lvl 0 -x -20 -y -440 -defaultsOSRD
-preplace portBus MUX_select -pg 1 -lvl 0 -x -20 -y -400 -defaultsOSRD
-preplace portBus DataBus -pg 1 -lvl 3 -x 1120 -y 20 -defaultsOSRD
-preplace portBus MemoryWriteBus -pg 1 -lvl 3 -x 1120 -y 60 -defaultsOSRD
-preplace portBus MemoryReadBus -pg 1 -lvl 3 -x 1120 -y 150 -defaultsOSRD -right
-preplace portBus PC_Data -pg 1 -lvl 3 -x 1120 -y 570 -defaultsOSRD
-preplace portBus DR_Data -pg 1 -lvl 3 -x 1120 -y 550 -defaultsOSRD
-preplace portBus IR_Data -pg 1 -lvl 3 -x 1120 -y 530 -defaultsOSRD
-preplace portBus ACC_Data -pg 1 -lvl 3 -x 1120 -y 510 -defaultsOSRD
+preplace port port-id_MemoryCS -pg 1 -lvl 4 -x 1120 -y 220 -defaultsOSRD
+preplace port port-id_MemoryWE -pg 1 -lvl 4 -x 1120 -y 190 -defaultsOSRD
+preplace port port-id_Flags_Z -pg 1 -lvl 4 -x 1120 -y -350 -defaultsOSRD
+preplace port port-id_Flags_C -pg 1 -lvl 4 -x 1120 -y -330 -defaultsOSRD
+preplace port port-id_ACC_load -pg 1 -lvl 0 -x -20 -y -230 -defaultsOSRD
+preplace port port-id_dev_flags_load -pg 1 -lvl 0 -x -20 -y -410 -defaultsOSRD
+preplace portBus AddressBus -pg 1 -lvl 4 -x 1120 -y 440 -defaultsOSRD
+preplace portBus data_bus_injection -pg 1 -lvl 0 -x -20 -y -510 -defaultsOSRD
+preplace portBus MUX_select -pg 1 -lvl 0 -x -20 -y -480 -defaultsOSRD
+preplace portBus DataBus -pg 1 -lvl 4 -x 1120 -y 20 -defaultsOSRD
+preplace portBus MemoryWriteBus -pg 1 -lvl 4 -x 1120 -y 60 -defaultsOSRD
+preplace portBus MemoryReadBus -pg 1 -lvl 4 -x 1120 -y 150 -defaultsOSRD -right
+preplace portBus PC_Data -pg 1 -lvl 4 -x 1120 -y 380 -defaultsOSRD
+preplace portBus DR_Data -pg 1 -lvl 4 -x 1120 -y 340 -defaultsOSRD
+preplace portBus IR_Data -pg 1 -lvl 4 -x 1120 -y 280 -defaultsOSRD
+preplace portBus ACC_Data -pg 1 -lvl 4 -x 1120 -y 310 -defaultsOSRD
+preplace portBus dev_alu_op -pg 1 -lvl 0 -x -20 -y -440 -defaultsOSRD
+preplace portBus ALU_O -pg 1 -lvl 4 -x 1120 -y -460 -defaultsOSRD
 preplace inst register_PC -pg 1 -lvl 1 -x 160 -y 260 -defaultsOSRD
 preplace inst register_ACC -pg 1 -lvl 1 -x 160 -y -240 -defaultsOSRD
 preplace inst register_DR -pg 1 -lvl 1 -x 160 -y 80 -defaultsOSRD
 preplace inst register_IR -pg 1 -lvl 1 -x 160 -y -80 -defaultsOSRD
 preplace inst register_AR -pg 1 -lvl 1 -x 160 -y 440 -defaultsOSRD
-preplace inst MUX_0 -pg 1 -lvl 2 -x 810 -y 20 -defaultsOSRD
-preplace netloc MemoryReadBus_1 1 1 2 710 150 N
-preplace netloc Net 1 0 3 40 530 700J 140 930
-preplace netloc Net1 1 0 1 30 -360n
-preplace netloc Net2 1 0 1 20 -330n
-preplace netloc register_AR_Output 1 1 2 N 440 N
-preplace netloc register_DR_Output 1 1 2 680 130 920
-preplace netloc register_PC_Output 1 1 2 690 430 910
+preplace inst MUX_0 -pg 1 -lvl 3 -x 810 -y 20 -defaultsOSRD
+preplace inst ALU_0 -pg 1 -lvl 2 -x 490 -y -300 -defaultsOSRD
+preplace inst register_Flags_0 -pg 1 -lvl 3 -x 810 -y -340 -defaultsOSRD
+preplace netloc MemoryReadBus_1 1 2 2 710 150 N
+preplace netloc Net 1 0 4 30 -330 370J -210 N -210 940
+preplace netloc Net1 1 0 3 20 -340 380 -220 710
+preplace netloc Net2 1 0 1 10 -330n
+preplace netloc register_AR_Output 1 1 3 N 440 N 440 N
+preplace netloc register_PC_Output 1 1 3 N 260 690 380 N
 preplace netloc testbenchARLoad_1 1 0 1 NJ 450
-preplace netloc testbenchData_1 1 0 2 NJ -440 310J
-preplace netloc testbenchMUXSelect_1 1 0 2 NJ -400 280J
-preplace netloc register_ACC_Output 1 1 2 NJ -240 950
-preplace netloc register_IR_Output 1 1 2 NJ -80 940
-levelinfo -pg 1 -20 160 810 1120
-pagesize -pg 1 -db -bbox -sgen -240 -620 1310 650
+preplace netloc testbenchMUXSelect_1 1 0 3 NJ -480 NJ -480 690
+preplace netloc register_ACC_Output 1 1 3 390J -200 670 120 920
+preplace netloc register_IR_Output 1 1 3 NJ -80 N -80 930
+preplace netloc ALU_0_O 1 0 4 40 -380 NJ -380 590 -460 N
+preplace netloc register_DR_Output 1 1 3 NJ 80 590J 130 910
+preplace netloc data_bus_injection_1 1 0 3 NJ -510 NJ -510 700
+preplace netloc ALU_0_c 1 2 1 610 -350n
+preplace netloc ALU_0_z 1 2 1 600 -370n
+preplace netloc register_Flags_0_z_out 1 3 1 N -350
+preplace netloc register_Flags_0_c_out 1 3 1 N -330
+preplace netloc dev_alu_op_1 1 0 2 NJ -440 390
+preplace netloc ACC_load_1 1 0 1 N -230
+preplace netloc dev_flags_load_1 1 0 3 NJ -410 NJ -410 620
+levelinfo -pg 1 -20 160 490 810 1120
+pagesize -pg 1 -db -bbox -sgen -240 -680 1310 650
 "
 }
 0

@@ -58,9 +58,17 @@ module top(
         .DR_Data(io.DR_Data),
         .PC_Data(io.PC_Data),
         
+        .ALU_O(io.ALU_O),
+        .Flags_Z(io.Flags_Z),
+        .Flags_C(io.Flags_C),
+        
         .MUX_select(io.MUX_select),
         .data_bus_injection(io.data_bus_injection),
-        .AR_load(io.AR_load)
+        .AR_load(io.AR_load),
+        .ACC_load(io.ACC_load),
+        
+        .dev_alu_op(io.dev_alu_op),
+        .dev_flags_load(io.dev_flags_load)
     );
     
     assign io.AddressBus = core0.AddressBus;

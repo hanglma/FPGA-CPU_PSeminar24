@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE7EEFDD18A2CE9F1",
+      "boundary_crc": "0xDAF6CE86A8581CF2",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
@@ -16,7 +16,9 @@
       "register_DR": "",
       "register_IR": "",
       "register_AR": "",
-      "MUX_0": ""
+      "MUX_0": "",
+      "ALU_0": "",
+      "register_Flags_0": ""
     },
     "ports": {
       "clk": {
@@ -135,6 +137,34 @@
       "ACC_Data": {
         "direction": "O",
         "left": "7",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default_prop"
+          }
+        }
+      },
+      "Flags_Z": {
+        "direction": "O"
+      },
+      "Flags_C": {
+        "direction": "O"
+      },
+      "dev_alu_op": {
+        "direction": "I",
+        "left": "1",
+        "right": "0"
+      },
+      "ACC_load": {
+        "direction": "I"
+      },
+      "dev_flags_load": {
+        "direction": "I"
+      },
+      "ALU_O": {
+        "direction": "O",
+        "left": "7",
         "right": "0"
       }
     },
@@ -217,7 +247,13 @@
           "Output": {
             "direction": "O",
             "left": "7",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
           },
           "clk": {
             "type": "clk",
@@ -448,7 +484,13 @@
           "B": {
             "direction": "I",
             "left": "7",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
           },
           "C": {
             "direction": "I",
@@ -466,9 +508,123 @@
             "right": "7"
           }
         }
+      },
+      "ALU_0": {
+        "vlnv": "xilinx.com:module_ref:ALU:1.0",
+        "ip_revision": "1",
+        "xci_name": "cpu_ALU_0_0",
+        "xci_path": "ip/cpu_ALU_0_0/cpu_ALU_0_0.xci",
+        "inst_hier_path": "ALU_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "ALU",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "op": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "A": {
+            "direction": "I",
+            "left": "7",
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "B": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "O": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "c": {
+            "direction": "O"
+          },
+          "z": {
+            "direction": "O"
+          }
+        }
+      },
+      "register_Flags_0": {
+        "vlnv": "xilinx.com:module_ref:register_Flags:1.0",
+        "ip_revision": "1",
+        "xci_name": "cpu_register_Flags_0_0",
+        "xci_path": "ip/cpu_register_Flags_0_0/cpu_register_Flags_0_0.xci",
+        "inst_hier_path": "register_Flags_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "register_Flags",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "z_in": {
+            "direction": "I"
+          },
+          "c_in": {
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "cpu_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "load": {
+            "direction": "I"
+          },
+          "z_out": {
+            "direction": "O"
+          },
+          "c_out": {
+            "direction": "O"
+          }
+        }
       }
     },
     "nets": {
+      "ACC_load_1": {
+        "ports": [
+          "ACC_load",
+          "register_ACC/load"
+        ]
+      },
+      "ALU_0_O": {
+        "ports": [
+          "ALU_0/O",
+          "register_ACC/Input",
+          "ALU_O"
+        ]
+      },
+      "ALU_0_c": {
+        "ports": [
+          "ALU_0/c",
+          "register_Flags_0/c_in"
+        ]
+      },
+      "ALU_0_z": {
+        "ports": [
+          "ALU_0/z",
+          "register_Flags_0/z_in"
+        ]
+      },
       "MemoryReadBus_1": {
         "ports": [
           "MemoryReadBus",
@@ -483,7 +639,8 @@
           "register_PC/Input",
           "register_AR/Input",
           "DataBus",
-          "MemoryWriteBus"
+          "MemoryWriteBus",
+          "ALU_0/B"
         ]
       },
       "Net1": {
@@ -493,7 +650,8 @@
           "register_DR/clk",
           "register_PC/clk",
           "register_AR/clk",
-          "register_ACC/clk"
+          "register_ACC/clk",
+          "register_Flags_0/clk"
         ]
       },
       "Net2": {
@@ -506,10 +664,30 @@
           "register_AR/rst"
         ]
       },
+      "data_bus_injection_1": {
+        "ports": [
+          "data_bus_injection",
+          "MUX_0/B"
+        ]
+      },
+      "dev_alu_op_1": {
+        "ports": [
+          "dev_alu_op",
+          "ALU_0/op"
+        ]
+      },
+      "dev_flags_load_1": {
+        "ports": [
+          "dev_flags_load",
+          "register_Flags_0/load"
+        ]
+      },
       "register_ACC_Output": {
         "ports": [
           "register_ACC/Output",
-          "ACC_Data"
+          "ACC_Data",
+          "ALU_0/A",
+          "MUX_0/A"
         ]
       },
       "register_AR_Output": {
@@ -521,8 +699,19 @@
       "register_DR_Output": {
         "ports": [
           "register_DR/Output",
-          "MUX_0/B",
           "DR_Data"
+        ]
+      },
+      "register_Flags_0_c_out": {
+        "ports": [
+          "register_Flags_0/c_out",
+          "Flags_C"
+        ]
+      },
+      "register_Flags_0_z_out": {
+        "ports": [
+          "register_Flags_0/z_out",
+          "Flags_Z"
         ]
       },
       "register_IR_Output": {
@@ -542,12 +731,6 @@
         "ports": [
           "AR_load",
           "register_AR/load"
-        ]
-      },
-      "testbenchData_1": {
-        "ports": [
-          "data_bus_injection",
-          "MUX_0/A"
         ]
       },
       "testbenchMUXSelect_1": {

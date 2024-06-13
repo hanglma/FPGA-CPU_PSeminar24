@@ -12,6 +12,9 @@ Bit Index | Signal Name
 13 | AR_load
 14 | Memory_CS
 15 | Memory_WE
+16 | ACC_load
+57 | dev_flags_load
+58:59 | dev_alu_op
 
 ## Target Output
 
@@ -23,3 +26,6 @@ Bit Index | Signal
 24:31 | IR_Data
 32:39 | DR_Data
 40:47 | PC_Data
+48:55 | ALU_O
+56 | Flags_Z
+57 | Flags_C

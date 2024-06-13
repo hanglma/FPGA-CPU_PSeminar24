@@ -68,7 +68,7 @@
                     "id": "overview",
                     "title": "Overview",
 
-                    "layout_tiles_x": 8,
+                    "layout_tiles_x": 6,
                     "layout_tiles_y": 2,
 
                     "widgets": [
@@ -143,27 +143,11 @@
                             }
                         },
                         {
-                            "id": "vsc:reg:ar-load",
-                            "widget": "pprobe-basic::switch",
-
-                            "layout": {
-                                "pos_x": 3,
-                                "pos_y": 2
-                            },
-                            "config": { 
-                                "label": "AR Load",
-                                "$bits": {
-                                    "dir": "TIPO",
-                                    "start": 13
-                                }
-                            }
-                        },
-                        {
                             "id": "vsc:mem-cs",
                             "widget": "pprobe-basic::switch",
 
                             "layout": {
-                                "pos_x": 4,
+                                "pos_x": 3,
                                 "pos_y": 2
                             },
                             "config": { 
@@ -179,7 +163,7 @@
                             "widget": "pprobe-basic::switch",
 
                             "layout": {
-                                "pos_x": 5,
+                                "pos_x": 4,
                                 "pos_y": 2
                             },
                             "config": { 
@@ -285,7 +269,7 @@
                             "widget": "pprobe-basic::bits",
 
                             "config": {
-                                "label": "FLAG Data",
+                                "label": "FLAG Data (ZC)",
                                 "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": {
@@ -303,13 +287,333 @@
             "id": "registers",
             "title": "Registers",
             
-            "layout_sections": []
+            "layout_sections": [
+                {
+                    "id": "control",
+                    "title": "Control",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:ctrl:clock-step",
+                            "widget": "pprobe-basic::button",
+
+                            "config": { 
+                                "label": "Clock Step",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 1
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:clock-auto",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Clock Auto",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 0
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:reset-enable",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Reset (Active Low)",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 2
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "registers",
+                    "title": "Registers",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 2,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:reg:pc-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "PC Data",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 40,
+                                    "count": 8
+                                }
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:ar-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "AR Data",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 8,
+                                    "count": 8
+                                }
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:dr-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "DR Data",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 32,
+                                    "count": 8
+                                }
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:ir-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "IR Data",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 24,
+                                    "count": 8
+                                }
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:acc-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "ACC Data",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 16,
+                                    "count": 8
+                                }
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:flag-data",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "FLAG Data (ZC)",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 56,
+                                    "count": 2
+                                }
+                            }
+                        },
+
+
+
+                        {
+                            "id": "vsc:reg:ar-load",
+                            "widget": "pprobe-basic::switch",
+
+                            "layout": {
+                                "pos_x": 2,
+                                "pos_y": 2
+                            },
+                            "config": { 
+                                "label": "AR Load",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 13
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:reg:acc-load",
+                            "widget": "pprobe-basic::switch",
+
+                            "layout": {
+                                "pos_x": 5,
+                                "pos_y": 2
+                            },
+                            "config": { 
+                                "label": "ACC Load",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 16
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:reg:flags-load",
+                            "widget": "pprobe-basic::switch",
+
+                            "layout": {
+                                "pos_x": 6,
+                                "pos_y": 2
+                            },
+                            "config": { 
+                                "label": "Flags Load",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 57
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "id": "alu",
             "title": "ALU",
             
-            "layout_sections": []
+            "layout_sections": [
+                {
+                    "id": "control",
+                    "title": "Control",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:ctrl:clock-step",
+                            "widget": "pprobe-basic::button",
+
+                            "config": { 
+                                "label": "Clock Step",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 1
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:clock-auto",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Clock Auto",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 0
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:reset-enable",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Reset (Active Low)",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 2
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "alu",
+                    "title": "ALU",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:alu:op-a",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "ACC Register (Operand A)",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 16,
+                                    "count": 8
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:alu:op-b",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "Data Bus (Operand B)",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 0,
+                                    "count": 8
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:alu:alu-o",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "ALU Result",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TOPI",
+                                    "start": 48,
+                                    "count": 8
+                                }
+                            }
+                        },
+                        {
+                            "id": "vsc:alu:op-sel",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "Operator",
+                                "mode": "write",
+                                "bitOrder": "MSBF",
+                                "$bits": {
+                                    "dir": "TIPO",
+                                    "start": 58,
+                                    "count": 2
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "id": "control",
