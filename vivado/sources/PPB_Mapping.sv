@@ -5,6 +5,10 @@ module PPB_Mapping(
     
     input [7:0] DataBus,
     input [7:0] AddressBus,
+    input [7:0] ACC_Data,
+    input [7:0] IR_Data,
+    input [7:0] DR_Data,
+    input [7:0] PC_Data,
     
     output clk_auto_en,
     output clk_step,
@@ -31,5 +35,9 @@ module PPB_Mapping(
     
     assign device_outputs[0:7] = DataBus;
     assign device_outputs[8:15] = AddressBus;
+    assign device_outputs[16:23] = ACC_Data;
+    assign device_outputs[24:31] = IR_Data;
+    assign device_outputs[32:39] = DR_Data;
+    assign device_outputs[40:47] = PC_Data;
     
 endmodule

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x896F488D5AA22180",
+      "boundary_crc": "0xE7EEFDD18A2CE9F1",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
@@ -116,6 +116,26 @@
       },
       "MemoryWE": {
         "direction": "O"
+      },
+      "PC_Data": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "DR_Data": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "IR_Data": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "ACC_Data": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
       }
     },
     "components": {
@@ -486,6 +506,12 @@
           "register_AR/rst"
         ]
       },
+      "register_ACC_Output": {
+        "ports": [
+          "register_ACC/Output",
+          "ACC_Data"
+        ]
+      },
       "register_AR_Output": {
         "ports": [
           "register_AR/Output",
@@ -495,13 +521,21 @@
       "register_DR_Output": {
         "ports": [
           "register_DR/Output",
-          "MUX_0/B"
+          "MUX_0/B",
+          "DR_Data"
+        ]
+      },
+      "register_IR_Output": {
+        "ports": [
+          "register_IR/Output",
+          "IR_Data"
         ]
       },
       "register_PC_Output": {
         "ports": [
           "register_PC/Output",
-          "MUX_0/C"
+          "MUX_0/C",
+          "PC_Data"
         ]
       },
       "testbenchARLoad_1": {

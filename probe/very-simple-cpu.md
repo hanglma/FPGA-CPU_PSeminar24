@@ -19,3 +19,7 @@ Bit Index | Signal
 -|-
 0:7 | DataBus
 8:15 | AddressBus
+16:23 | ACC_data
+24:31 | IR_Data
+32:39 | DR_Data
+40:47 | PC_Data

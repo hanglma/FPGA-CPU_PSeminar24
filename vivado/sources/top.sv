@@ -53,6 +53,11 @@ module top(
         .MemoryWriteBus(ram.WriteDataBus),
         .MemoryReadBus(ram.ReadDataBus),
         
+        .ACC_Data(io.ACC_Data),
+        .IR_Data(io.IR_Data),
+        .DR_Data(io.DR_Data),
+        .PC_Data(io.PC_Data),
+        
         .MUX_select(io.MUX_select),
         .data_bus_injection(io.data_bus_injection),
         .AR_load(io.AR_load)

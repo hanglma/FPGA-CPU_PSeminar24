@@ -210,7 +210,7 @@
                                 "bitOrder": "MSBF",
                                 "$bits": {
                                     "dir": "TOPI",
-                                    "start": 16,
+                                    "start": 40,
                                     "count": 8
                                 }
                             }
@@ -226,7 +226,7 @@
                                 "bitOrder": "MSBF",
                                 "$bits": {
                                     "dir": "TOPI",
-                                    "start": 24,
+                                    "start": 8,
                                     "count": 8
                                 }
                             }
@@ -258,7 +258,7 @@
                                 "bitOrder": "MSBF",
                                 "$bits": {
                                     "dir": "TOPI",
-                                    "start": 40,
+                                    "start": 24,
                                     "count": 8
                                 }
                             }
@@ -274,7 +274,7 @@
                                 "bitOrder": "MSBF",
                                 "$bits": {
                                     "dir": "TOPI",
-                                    "start": 48,
+                                    "start": 16,
                                     "count": 8
                                 }
                             }
