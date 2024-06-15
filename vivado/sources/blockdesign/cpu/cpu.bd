@@ -1,13 +1,14 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB7FCD5449472A8E0",
+      "boundary_crc": "0x55A17FD1E4689A24",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.2"
+      "tool_version": "2023.2",
+      "validated": "true"
     },
     "design_tree": {
       "register_PC": "",
@@ -25,8 +26,28 @@
         "type": "clk",
         "direction": "I",
         "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rst",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "cpu_clk",
+            "value_src": "default"
+          },
           "FREQ_HZ": {
             "value": "100000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
           }
         }
       },
@@ -34,6 +55,10 @@
         "type": "rst",
         "direction": "I",
         "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
           "POLARITY": {
             "value": "ACTIVE_HIGH"
           }
@@ -43,7 +68,13 @@
         "type": "data",
         "direction": "O",
         "left": "7",
-        "right": "0"
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
       },
       "DataBus": {
         "direction": "O",
@@ -68,7 +99,13 @@
       "DR_Data": {
         "direction": "O",
         "left": "7",
-        "right": "0"
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default_prop"
+          }
+        }
       },
       "IR_Data": {
         "direction": "O",
@@ -78,7 +115,13 @@
       "ACC_Data": {
         "direction": "O",
         "left": "7",
-        "right": "0"
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default_prop"
+          }
+        }
       },
       "Flags_Z": {
         "direction": "O"
@@ -96,11 +139,42 @@
       },
       "dev_ctrl_state_cnt": {
         "direction": "O",
-        "left": "1",
+        "left": "2",
         "right": "0"
       },
       "dev_ctrl_clear": {
         "direction": "O"
+      },
+      "dev_ar_load": {
+        "direction": "O"
+      },
+      "dev_pc_load": {
+        "direction": "O"
+      },
+      "dev_pc_inc": {
+        "direction": "O"
+      },
+      "dev_ac_load": {
+        "direction": "O"
+      },
+      "dev_zc_load": {
+        "direction": "O"
+      },
+      "dev_ir_load": {
+        "direction": "O"
+      },
+      "dev_dr_load": {
+        "direction": "O"
+      },
+      "dev_mux_sel": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "dev_alu_op": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
       }
     },
     "components": {
@@ -243,7 +317,13 @@
           "Output": {
             "direction": "O",
             "left": "7",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
           },
           "clk": {
             "type": "clk",
@@ -464,7 +544,13 @@
           "A": {
             "direction": "I",
             "left": "7",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
           },
           "B": {
             "direction": "I",
@@ -560,12 +646,26 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "cpu_clk",
+                "value_src": "default_prop"
               }
             }
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "user_prop"
+              }
+            }
           },
           "Instruction": {
             "direction": "I",
@@ -646,55 +746,64 @@
       "Control_0_AC_load": {
         "ports": [
           "Control_0/AC_load",
-          "register_ACC/load"
+          "register_ACC/load",
+          "dev_ac_load"
         ]
       },
       "Control_0_ALU_op": {
         "ports": [
           "Control_0/ALU_op",
-          "ALU_0/op"
+          "ALU_0/op",
+          "dev_alu_op"
         ]
       },
       "Control_0_AR_load": {
         "ports": [
           "Control_0/AR_load",
-          "register_AR/load"
+          "register_AR/load",
+          "dev_ar_load"
         ]
       },
       "Control_0_DR_load": {
         "ports": [
           "Control_0/DR_load",
-          "register_DR/load"
+          "register_DR/load",
+          "dev_dr_load"
         ]
       },
       "Control_0_IR_load": {
         "ports": [
           "Control_0/IR_load",
-          "register_IR/load"
+          "register_IR/load",
+          "dev_ir_load"
         ]
       },
       "Control_0_MUX_sel": {
         "ports": [
           "Control_0/MUX_sel",
-          "MUX_0/sel"
+          "MUX_0/sel",
+          "dev_mux_sel"
         ]
       },
       "Control_0_PC_inc": {
         "ports": [
           "Control_0/PC_inc",
-          "register_PC/inc"
+          "register_PC/inc",
+          "dev_pc_inc"
         ]
       },
       "Control_0_PC_load": {
         "ports": [
           "Control_0/PC_load",
-          "register_PC/load"
+          "register_PC/load",
+          "dev_pc_load"
         ]
       },
       "Control_0_ZC_load": {
         "ports": [
           "Control_0/ZC_load",
-          "register_Flags_0/load"
+          "register_Flags_0/load",
+          "dev_zc_load"
         ]
       },
       "Control_0_dev_clear": {

@@ -12,34 +12,29 @@ module PPB_Mapping(
     input [7:0] ALU_O,
     input Flags_Z,
     input Flags_C,
+    input memory_WE,
+    
+    input [1:0] dev_mux_sel,
+    input [1:0] dev_alu_op,
+    input dev_ar_load,
+    input dev_pc_load,
+    input dev_pc_inc,
+    input dev_ac_load,
+    input dev_zc_load,
+    input dev_ir_load,
+    input dev_dr_load,
+    input [1:0] dev_ctrl_state_cnt,
+    input dev_ctrl_clear,
     
     output clk_auto_en,
     output clk_step,
-    output reset,
-    output reg [1:0] MUX_select,
-    output [7:0] data_bus_injection,
-    output AR_load,
-    output ACC_load,
-    output Memory_CS,
-    output Memory_WE,
-    
-    output dev_flags_load,
-    output [1:0] dev_alu_op
+    output reset
     
     );
     
     assign clk_auto_en = device_inputs[0];
     assign clk_step = device_inputs[1];
     assign reset = device_inputs[2];
-    assign MUX_select = device_inputs[3:4];
-    assign data_bus_injection = device_inputs[5:12];
-    assign AR_load = device_inputs[13];
-    assign Memory_CS = device_inputs[14];
-    assign Memory_WE = device_inputs[15];
-    assign ACC_load = device_inputs[16];
-    
-    assign dev_flags_load = device_inputs[57];
-    assign dev_alu_op = device_inputs[58:59];
     
     assign device_outputs[0:7] = DataBus;
     assign device_outputs[8:15] = AddressBus;
@@ -50,5 +45,18 @@ module PPB_Mapping(
     assign device_outputs[48:55] = ALU_O;
     assign device_outputs[56] = Flags_Z;
     assign device_outputs[57] = Flags_C;
+    assign device_outputs[58] = memory_WE;
+    
+    assign device_outputs[59:60] = dev_mux_sel;
+    assign device_outputs[61:62] = dev_alu_op;
+    assign device_outputs[63] = dev_ar_load;
+    assign device_outputs[64] = dev_pc_load;
+    assign device_outputs[65] = dev_pc_inc;
+    assign device_outputs[66] = dev_ac_load;
+    assign device_outputs[67] = dev_zc_load;
+    assign device_outputs[68] = dev_ir_load;
+    assign device_outputs[69] = dev_dr_load;
+    assign device_outputs[70:71] = dev_ctrl_state_cnt;
+    assign device_outputs[72] = dev_ctrl_clear;
     
 endmodule

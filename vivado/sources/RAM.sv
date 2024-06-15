@@ -1,7 +1,6 @@
 module RAM(
     input clk,
     input WE,   // Write-Enable,
-    input CS,   // Chip-Select      <--- TODO: Remove this at some point
     
     input [7:0] address,
     input [7:0] WriteDataBus,
