@@ -7,6 +7,9 @@ Bit Index | Signal Name
 0 | clk_auto_en
 1 | clk_step
 2 | reset
+3:10 | ProgrammingAddress
+11:18 | ProgrammingData
+19 | programming_enable
 
 
 ## Target Output

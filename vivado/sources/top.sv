@@ -38,20 +38,34 @@ module top(
         .clk
     );
     
+    Programming prog(
+        .clk,
+        .rst_in(io.reset),
+        
+        .programming_enable(io.programming_enable),
+        .ProgrammingAddress(io.ProgrammingAddress),
+        .ProgrammingData(io.ProgrammingData)
+    );
+    
     RAM ram(
-        .clk
+        .clk(prog.mem_clk),
+        .WE(prog.MemWE),
+        
+        .Address(prog.MemAddressBus),
+        .ReadDataBus(prog.MemReadBus),
+        .WriteDataBus(prog.MemWriteBus)
     );
     
     cpu core0(
-        .clk,
-        .rst(io.reset),
+        .clk(prog.core_clk),
+        .rst(prog.core_rst),
         
         .DataBus(io.DataBus),
-        .AddressBus(ram.address),
-        .MemoryWriteBus(ram.WriteDataBus),
-        .MemoryReadBus(ram.ReadDataBus),
+        .AddressBus(prog.AddressBus),
+        .MemoryWriteBus(prog.WriteBus),
+        .MemoryReadBus(prog.ReadBus),
         
-        .memory_WE(ram.WE),
+        .memory_WE(prog.memory_WE),
         
         .ACC_Data(io.ACC_Data),
         .IR_Data(io.IR_Data),

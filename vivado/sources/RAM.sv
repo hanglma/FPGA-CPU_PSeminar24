@@ -2,7 +2,7 @@ module RAM(
     input clk,
     input WE,   // Write-Enable,
     
-    input [7:0] address,
+    input [7:0] Address,
     input [7:0] WriteDataBus,
     output [7:0] ReadDataBus
     );
@@ -12,9 +12,9 @@ module RAM(
     always @(negedge clk) begin
         if(WE) begin
             // Write mode
-            Memory[address] <= WriteDataBus;
+            Memory[Address] <= WriteDataBus;
         end
     end
     
-    assign ReadDataBus = Memory[address];
+    assign ReadDataBus = Memory[Address];
 endmodule

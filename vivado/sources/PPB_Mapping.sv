@@ -28,13 +28,19 @@ module PPB_Mapping(
     
     output clk_auto_en,
     output clk_step,
-    output reset
+    output reset,
+    output programming_en,
+    output [7:0] ProgrammingAddress,
+    output [7:0] ProgrammingData
     
     );
     
     assign clk_auto_en = device_inputs[0];
     assign clk_step = device_inputs[1];
     assign reset = device_inputs[2];
+    assign ProgrammingAddress = device_inputs[3:10];
+    assign ProgrammingData = device_inputs[11:18];
+    assign programming_enable = device_inputs[19];
     
     assign device_outputs[0:7] = DataBus;
     assign device_outputs[8:15] = AddressBus;
