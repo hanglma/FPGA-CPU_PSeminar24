@@ -15,10 +15,12 @@ module ALU(
     
     always @(*) begin
         case(op)
-            2'b00: internal <= A + B; // Add
-            2'b01: internal <= A - B; // Subtract
-            2'b10: internal <= A & B; // And operation
-            2'b11: internal <= A | B; // Or operation
+            2'b00: internal <= A + B;   // Add
+            //2'b01: internal <= A - B;   // Subtract
+            2'b01: internal <= B;       // Passthrough
+            2'b10: internal <= A & B;   // And operation
+            //2'b11: internal <= A | B;   // Or operation
+            2'b11: internal <= !A;      // Complement A
             default: internal <= 'b0;
         endcase
         
