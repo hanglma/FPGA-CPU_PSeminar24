@@ -8,7 +8,9 @@ module Control(
     input flag_c,           // ALU Carry Flag
     
     output [1:0] MUX_sel,   // MUX selector
-    output [1:0] ALU_op,    // ALU operation
+    output [1:0] ALU_op,    // ALU operation,
+    
+    output memory_WE,       // Memory Write Enable
     
     output AR_load,         // Address Register Load
     output PC_load,         // Program Counter Load
@@ -44,7 +46,7 @@ module Control(
     
     
     reg [2:0] StateCount;
-    reg clear;
+    wire clear;
     
     always @(negedge clk or negedge rst) begin
         if(!rst) begin
@@ -57,6 +59,25 @@ module Control(
             end
         end
     end
+    
+    assign AR_load = (StateCount == 0) |
+                     (StateCount == 2 & (Instruction==INS_LDA | Instruction==INS_STOA | Instruction==INS_ADDA | Instruction==INS_JMP)) |
+                     (StateCount == 3 & (Instruction==INS_STOA)) ? 1 : 0;
+    assign PC_load = (StateCount == 3 & Instruction==INS_JMP) ? 1 : 0;
+    assign IR_load = (StateCount == 1) ? 1 : 0;
+    assign AC_load = (StateCount == 2 & Instruction==INS_COMA) | (StateCount==3 & (Instruction==INS_LDA | Instruction == INS_ADDA)) ? 1 : 0;
+    assign ZC_load = (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_ADDA)) |
+                     (StateCount == 2 & Instruction==INS_COMA) ? 1 : 0;
+    assign clear   = (StateCount == 2 & Instruction==INS_COMA) |
+                     (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_ADDA | Instruction==INS_JMP)) |
+                     (StateCount == 4 & Instruction==INS_STOA) ? 1 : 0;
+    assign memory_WE = (StateCount==4 & Instruction==INS_STOA) ? 1 : 0;
+    assign MUX_sel = (StateCount==0 | StateCount==2) ? MUX_PC :
+                     (StateCount==1 | StateCount==3) ? MUX_MEM :
+                     (StateCount==4 & Instruction==INS_STOA) ? MUX_ACC : 0;
+    assign ALU_op  = (Instruction==INS_LDA) ? ALU_PAS :
+                     (Instruction==INS_ADDA) ? ALU_ADD :
+                     (Instruction==INS_COMA) ? ALU_COM : 0;
     
     assign dev_state_count  = StateCount;
     assign dev_clear        = clear;

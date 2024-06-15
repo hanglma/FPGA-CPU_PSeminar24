@@ -1,7 +1,7 @@
 module RAM(
     input clk,
     input WE,   // Write-Enable,
-    input CS,   // Chip-Select
+    input CS,   // Chip-Select      <--- TODO: Remove this at some point
     
     input [7:0] address,
     input [7:0] WriteDataBus,
@@ -11,7 +11,7 @@ module RAM(
     reg [7:0] Memory [0:255];
     
     always @(negedge clk) begin
-        if(WE & CS) begin
+        if(WE) begin
             // Write mode
             Memory[address] <= WriteDataBus;
         end
