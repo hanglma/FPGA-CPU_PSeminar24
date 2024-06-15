@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xDAF6CE86A8581CF2",
+      "boundary_crc": "0xB7FCD5449472A8E0",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
@@ -113,12 +113,6 @@
         "left": "7",
         "right": "0"
       },
-      "MemoryCS": {
-        "direction": "O"
-      },
-      "MemoryWE": {
-        "direction": "O"
-      },
       "PC_Data": {
         "direction": "O",
         "left": "7",
@@ -166,6 +160,12 @@
         "direction": "O",
         "left": "7",
         "right": "0"
+      },
+      "memory_WE": {
+        "direction": "O"
+      },
+      "memory_CS": {
+        "direction": "O"
       }
     },
     "components": {
@@ -577,6 +577,10 @@
             "type": "clk",
             "direction": "I",
             "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
               "FREQ_HZ": {
                 "value": "100000000",
                 "value_src": "user_prop"
@@ -589,6 +593,16 @@
           },
           "load": {
             "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "user_prop"
+              }
+            }
           },
           "z_out": {
             "direction": "O"
@@ -609,8 +623,8 @@
       "ALU_0_O": {
         "ports": [
           "ALU_0/O",
-          "register_ACC/Input",
-          "ALU_O"
+          "ALU_O",
+          "register_ACC/Input"
         ]
       },
       "ALU_0_c": {
@@ -634,34 +648,35 @@
       "Net": {
         "ports": [
           "MUX_0/O",
-          "register_IR/Input",
-          "register_DR/Input",
-          "register_PC/Input",
-          "register_AR/Input",
           "DataBus",
           "MemoryWriteBus",
-          "ALU_0/B"
+          "ALU_0/B",
+          "register_DR/Input",
+          "register_IR/Input",
+          "register_AR/Input",
+          "register_PC/Input"
         ]
       },
       "Net1": {
         "ports": [
           "clk",
-          "register_IR/clk",
-          "register_DR/clk",
-          "register_PC/clk",
-          "register_AR/clk",
           "register_ACC/clk",
-          "register_Flags_0/clk"
+          "register_DR/clk",
+          "register_IR/clk",
+          "register_AR/clk",
+          "register_Flags_0/clk",
+          "register_PC/clk"
         ]
       },
       "Net2": {
         "ports": [
           "rst",
-          "register_IR/rst",
           "register_ACC/rst",
           "register_DR/rst",
+          "register_IR/rst",
+          "register_AR/rst",
           "register_PC/rst",
-          "register_AR/rst"
+          "register_Flags_0/rst"
         ]
       },
       "data_bus_injection_1": {
@@ -723,8 +738,8 @@
       "register_PC_Output": {
         "ports": [
           "register_PC/Output",
-          "MUX_0/C",
-          "PC_Data"
+          "PC_Data",
+          "MUX_0/C"
         ]
       },
       "testbenchARLoad_1": {

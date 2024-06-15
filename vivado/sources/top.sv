@@ -39,9 +39,7 @@ module top(
     );
     
     RAM ram(
-        .clk,
-        .WE(io.Memory_WE),
-        .CS(io.Memory_CS)
+        .clk
     );
     
     cpu core0(
@@ -52,6 +50,12 @@ module top(
         .AddressBus(ram.address),
         .MemoryWriteBus(ram.WriteDataBus),
         .MemoryReadBus(ram.ReadDataBus),
+        
+        .memory_WE(ram.WE),
+        .memory_CS(ram.CS),
+        
+        
+        /// IO for development ///
         
         .ACC_Data(io.ACC_Data),
         .IR_Data(io.IR_Data),
