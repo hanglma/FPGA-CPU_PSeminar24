@@ -204,7 +204,7 @@
                     "title": "Overview",
 
                     "layout_tiles_x": 6,
-                    "layout_tiles_y": 2,
+                    "layout_tiles_y": 1,
 
                     "widgets": [
                         {
@@ -212,7 +212,7 @@
                             "widget": "pprobe-basic::bits",
 
                             "layout": {
-                                "size_x": 2
+                                "size_x": 1
                             },
                             "config": {
                                 "label": "8-Bit Data Bus",
@@ -223,14 +223,11 @@
                         },
                         {
                             "id": "vsc:address-bus",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
-                            "layout": {
-                                "size_x": 2
-                            },
                             "config": {
                                 "label": "8-Bit Address Bus",
-                                "mode": "read",
+                                "system": "hex",
                                 "bitOrder": "MSBF",
                                 "$bits": "AddressBus"
                             }
@@ -267,22 +264,22 @@
                     "widgets": [
                         {
                             "id": "vsc:reg:pc-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "config": {
                                 "label": "PC Data",
-                                "mode": "read",
+                                "system": "hex",
                                 "bitOrder": "MSBF",
                                 "$bits": "PC_Data"
                             }
                         },
                         {
                             "id": "vsc:reg:ar-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "config": {
                                 "label": "AR Data",
-                                "mode": "read",
+                                "system": "hex",
                                 "bitOrder": "MSBF",
                                 "$bits": "AddressBus"
                             }
@@ -311,11 +308,10 @@
                         },
                         {
                             "id": "vsc:reg:acc-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "config": {
                                 "label": "ACC Data",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "ACC_Data"
                             }
@@ -387,24 +383,24 @@
                     "widgets": [
                         {
                             "id": "vsc:reg:pc-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "layout": { "size_y": 2 },
                             "config": {
                                 "label": "PC Data",
-                                "mode": "read",
+                                "system": "hex",
                                 "bitOrder": "MSBF",
                                 "$bits": "PC_Data"
                             }
                         },
                         {
                             "id": "vsc:reg:ar-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "layout": { "size_y": 2 },
                             "config": {
                                 "label": "AR Data",
-                                "mode": "read",
+                                "system": "hex",
                                 "bitOrder": "MSBF",
                                 "$bits": "AddressBus"
                             }
@@ -435,12 +431,12 @@
                         },
                         {
                             "id": "vsc:reg:acc-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "layout": { "size_y": 2 },
                             "config": {
                                 "label": "ACC Data",
-                                "mode": "read",
+                                "system": "decimal",
                                 "bitOrder": "MSBF",
                                 "$bits": "ACC_Data"
                             }
@@ -601,7 +597,7 @@
                     "title": "ALU",
 
                     "layout_tiles_x": 6,
-                    "layout_tiles_y": 1,
+                    "layout_tiles_y": 2,
 
                     "widgets": [
                         {
@@ -646,6 +642,40 @@
                                 "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "dev_alu_op"
+                            }
+                        },
+
+                        {
+                            "id": "vsc:alu:op-a-num",
+                            "widget": "pprobe-basic::number",
+
+                            "layout": {"pos_x": 1, "pos_y": 2},
+                            "config": {
+                                "label": "ACC Register (Operand A)",
+                                "bitOrder": "MSBF",
+                                "$bits": "ACC_Data"
+                            }
+                        },
+                        {
+                            "id": "vsc:alu:op-b-num",
+                            "widget": "pprobe-basic::number",
+
+                            "layout": {"pos_x": 2, "pos_y": 2},
+                            "config": {
+                                "label": "Data Bus (Operand B)",
+                                "bitOrder": "MSBF",
+                                "$bits": "DataBus"
+                            }
+                        },
+                        {
+                            "id": "vsc:alu:alu-o-num",
+                            "widget": "pprobe-basic::number",
+
+                            "layout": {"pos_x": 3, "pos_y": 2},
+                            "config": {
+                                "label": "ALU Result",
+                                "bitOrder": "MSBF",
+                                "$bits": "ALU_O"
                             }
                         }
                     ]
@@ -721,11 +751,10 @@
                     "widgets": [
                         {
                             "id": "vsc:control:state-count",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "config": {
                                 "label": "State Count",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "dev_ctrl_state_cnt"
                             }

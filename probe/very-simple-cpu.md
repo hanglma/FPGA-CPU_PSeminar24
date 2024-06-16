@@ -18,7 +18,6 @@ Bit Index | Signal
 -|-
 0:7 | DataBus
 8:15 | AddressBus
-|
 16:23 | ACC_Data
 24:31 | IR_Data
 32:39 | DR_Data
@@ -27,7 +26,6 @@ Bit Index | Signal
 56 | Flags_Z
 57 | Flags_C
 58 | memory_WE
-|
 59:60 | dev_mux_sel
 61:62 | dev_alu_op
 63 | dev_ar_load
