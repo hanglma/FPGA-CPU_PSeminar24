@@ -93,12 +93,26 @@
         "dev_mux_sel": {
             "dir": "TOPI",
             "start": 59,
-            "count": 2
+            "count": 2,
+
+            "valueMap": {
+                "0": "Accumulator",
+                "1": "Data Register",
+                "2": "Program Counter",
+                "3": "Memory"
+            }
         },
         "dev_alu_op": {
             "dir": "TOPI",
             "start": 61,
-            "count": 2
+            "count": 2,
+
+            "valueMap": {
+                "0": "Add",
+                "1": "Passthrough",
+                "2": "Logical And",
+                "3": "Complement A"
+            }
         },
         "dev_ar_load": {
             "dir": "TOPI",
@@ -234,11 +248,10 @@
                         },
                         {
                             "id": "vsc:mux-sel",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::mapping",
 
                             "config": {
                                 "label": "MUX Sel",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "dev_mux_sel"
                             }
@@ -635,11 +648,10 @@
                         },
                         {
                             "id": "vsc:alu:op-sel",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::mapping",
 
                             "config": {
                                 "label": "Operator",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "dev_alu_op"
                             }
