@@ -21,6 +21,20 @@
             "dir": "TIPO",
             "start": 2
         },
+        "ProgrammingAddress": {
+            "dir": "TIPO",
+            "start": 3,
+            "count": 8
+        },
+        "ProgrammingData": {
+            "start": 11,
+            "count": 8
+        },
+        "programming_en": {
+            "dir": "TIPO",
+            "start": 19
+        },
+
 
         "DataBus": {
             "dir": "TOPI",
@@ -117,11 +131,11 @@
         "dev_ctrl_state_cnt": {
             "dir": "TOPI",
             "start": 70,
-            "count": 2
+            "count": 3
         },
         "dev_ctrl_clear": {
             "dir": "TOPI",
-            "start": 72
+            "start": 73
         }
     },
 
@@ -136,7 +150,7 @@
                     "title": "Control",
 
                     "layout_tiles_x": 6,
-                    "layout_tiles_y": 1,
+                    "layout_tiles_y": 3,
 
                     "widgets": [
                         {
@@ -164,6 +178,23 @@
                             "config": { 
                                 "label": "Reset (Active Low)",
                                 "$bits": "reset"
+                            }
+                        },
+
+                        {
+                            "id": "vsc:programmer",
+                            "widget": "very-simple-cpu::programmer",
+                            
+                            "layout": {
+                                "pos_y": 2,
+                                "pos_x": 1,
+                                "size_y": 2
+                            },
+                            "config": {
+                                "$clk": "clk_step",
+                                "$programming_en": "programming_en",
+                                "$programming_address": "ProgrammingAddress",
+                                "$programming_data": "ProgrammingData"
                             }
                         }
                     ]
@@ -351,13 +382,14 @@
                     "title": "Registers",
 
                     "layout_tiles_x": 6,
-                    "layout_tiles_y": 2,
+                    "layout_tiles_y": 4,
 
                     "widgets": [
                         {
                             "id": "vsc:reg:pc-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "PC Data",
                                 "mode": "read",
@@ -369,6 +401,7 @@
                             "id": "vsc:reg:ar-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "AR Data",
                                 "mode": "read",
@@ -380,6 +413,7 @@
                             "id": "vsc:reg:dr-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "DR Data",
                                 "mode": "read",
@@ -391,6 +425,7 @@
                             "id": "vsc:reg:ir-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "IR Data",
                                 "mode": "read",
@@ -402,6 +437,7 @@
                             "id": "vsc:reg:acc-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "ACC Data",
                                 "mode": "read",
@@ -413,6 +449,7 @@
                             "id": "vsc:reg:flag-data",
                             "widget": "pprobe-basic::bits",
 
+                            "layout": { "size_y": 2 },
                             "config": {
                                 "label": "FLAG Data (ZC)",
                                 "mode": "read",
@@ -427,7 +464,7 @@
 
                             "layout": {
                                 "pos_x": 1,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "PC Load",
@@ -440,7 +477,7 @@
 
                             "layout": {
                                 "pos_x": 2,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "AR Load",
@@ -453,7 +490,7 @@
 
                             "layout": {
                                 "pos_x": 3,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "DR Load",
@@ -466,7 +503,7 @@
 
                             "layout": {
                                 "pos_x": 4,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "IR Load",
@@ -479,7 +516,7 @@
 
                             "layout": {
                                 "pos_x": 5,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "ACC Load",
@@ -492,11 +529,25 @@
 
                             "layout": {
                                 "pos_x": 6,
-                                "pos_y": 2
+                                "pos_y": 3
                             },
                             "config": { 
                                 "label": "Flags Load",
                                 "$bits": "dev_zc_load"
+                            }
+                        },
+
+                        {
+                            "id": "vsc:reg:pc-inc",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "layout": {
+                                "pos_x": 1,
+                                "pos_y": 4
+                            },
+                            "config": { 
+                                "label": "PC Inc",
+                                "$bits": "dev_pc_inc"
                             }
                         }
                     ]
@@ -595,6 +646,97 @@
                                 "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "dev_alu_op"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "control",
+            "title": "Control",
+            
+            "layout_sections": [
+                {
+                    "id": "control",
+                    "title": "Control",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 3,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:ctrl:clock-step",
+                            "widget": "pprobe-basic::button",
+
+                            "config": { 
+                                "label": "Clock Step",
+                                "$bits": "clk_step"
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:clock-auto",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Clock Auto",
+                                "$bits": "clk_auto_en"
+                            }
+                        },
+                        {
+                            "id": "vsc:ctrl:reset-enable",
+                            "widget": "pprobe-basic::switch",
+
+                            "config": { 
+                                "label": "Reset (Active Low)",
+                                "$bits": "reset"
+                            }
+                        },
+
+                        {
+                            "id": "vsc:programmer",
+                            "widget": "very-simple-cpu::programmer",
+                            
+                            "layout": {
+                                "pos_y": 2,
+                                "pos_x": 1,
+                                "size_y": 2
+                            },
+                            "config": {
+                                "$clk": "clk_step",
+                                "$programming_en": "programming_en",
+                                "$programming_address": "ProgrammingAddress",
+                                "$programming_data": "ProgrammingData"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "control-block",
+                    "title": "Control Block",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:control:state-count",
+                            "widget": "pprobe-basic::bits",
+
+                            "config": {
+                                "label": "State Count",
+                                "mode": "read",
+                                "bitOrder": "MSBF",
+                                "$bits": "dev_ctrl_state_cnt"
+                            }
+                        },
+                        {
+                            "id": "vsc:control:clear",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "Clear Line",
+                                "$bits": "dev_ctrl_clear"
                             }
                         }
                     ]

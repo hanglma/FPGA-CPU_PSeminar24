@@ -717,7 +717,7 @@
             "left": "2",
             "right": "0"
           },
-          "dev_clear": {
+          "clear": {
             "direction": "O"
           }
         }
@@ -808,7 +808,7 @@
       },
       "Control_0_dev_clear": {
         "ports": [
-          "Control_0/dev_clear",
+          "Control_0/clear",
           "dev_ctrl_clear"
         ]
       },

@@ -22,7 +22,7 @@ module Control(
     
     /// IO for development & debugging ///
     output [2:0] dev_state_count,
-    output dev_clear
+    output clear
     );
     
     // Instructions //
@@ -46,18 +46,18 @@ module Control(
     
     
     reg [2:0] StateCount;
-    wire clear;
+    //wire clear;
     
-    always @(negedge clk or negedge rst) begin
+    always @(negedge clk) begin
+        StateCount <= StateCount + 1;
         if(!rst) begin
             StateCount <= 0;
-        end else if(!clk) begin
+        end else begin
             if(clear) begin
                 StateCount <= 0;
-            end else begin
-                StateCount <= StateCount + 1;
             end
         end
+        //StateCount <= StateCount + 1;
     end
     
     assign AR_load = (StateCount == 0) |
@@ -66,6 +66,7 @@ module Control(
     assign PC_load = (StateCount == 3 & Instruction==INS_JMP) ? 1 : 0;
     assign IR_load = (StateCount == 1) ? 1 : 0;
     assign AC_load = (StateCount == 2 & Instruction==INS_COMA) | (StateCount==3 & (Instruction==INS_LDA | Instruction == INS_ADDA)) ? 1 : 0;
+    assign PC_inc  = (StateCount == 1) | (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_STOA | Instruction==INS_ADDA)) ? 1 : 0;
     assign ZC_load = (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_ADDA)) |
                      (StateCount == 2 & Instruction==INS_COMA) ? 1 : 0;
     assign clear   = (StateCount == 2 & Instruction==INS_COMA) |
@@ -80,6 +81,6 @@ module Control(
                      (Instruction==INS_COMA) ? ALU_COM : 0;
     
     assign dev_state_count  = StateCount;
-    assign dev_clear        = clear;
+    //assign dev_clear        = clear;
     
 endmodule

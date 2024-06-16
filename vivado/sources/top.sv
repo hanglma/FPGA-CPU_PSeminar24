@@ -13,7 +13,7 @@ module top(
     );
     
     PPB_PHY #(.INPUT_BLOCKS(20), .OUTPUT_BLOCKS(40)) probe_phy(
-        .clk,
+        .clk(board_clk),
         .rst(pmod_rst),
         .PROJECT_ID(23'h31c748),
         
@@ -23,9 +23,6 @@ module top(
         .pmod_bus_pito
     );
     
-    logic clk;
-    assign leds[0] = clk;
-    
     PPB_Mapping io(
         .device_inputs(probe_phy.device_inputs),
         .device_outputs(probe_phy.device_outputs)
@@ -34,12 +31,11 @@ module top(
     ClockManager clock(
         .clk_100MHZ(board_clk),
         .clk_auto_en(io.clk_auto_en),
-        .clk_step(io.clk_step),
-        .clk
+        .clk_step(io.clk_step)
     );
     
     Programming prog(
-        .clk,
+        .clk(clock.clk),
         .rst_in(io.reset),
         
         .programming_enable(io.programming_enable),
@@ -92,5 +88,11 @@ module top(
     
     assign io.AddressBus = core0.AddressBus;
     assign io.memory_WE = core0.memory_WE;
+    
+    
+    assign leds[0] = clock.clk;
+    assign leds[1] = core0.clk;
+    assign leds[2] = core0.rst;
+    assign leds[3] = prog.programming_enable;
     
 endmodule

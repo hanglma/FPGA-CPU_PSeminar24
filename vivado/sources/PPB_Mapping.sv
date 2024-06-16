@@ -23,7 +23,7 @@ module PPB_Mapping(
     input dev_zc_load,
     input dev_ir_load,
     input dev_dr_load,
-    input [1:0] dev_ctrl_state_cnt,
+    input [2:0] dev_ctrl_state_cnt,
     input dev_ctrl_clear,
     
     output clk_auto_en,
@@ -62,7 +62,7 @@ module PPB_Mapping(
     assign device_outputs[67] = dev_zc_load;
     assign device_outputs[68] = dev_ir_load;
     assign device_outputs[69] = dev_dr_load;
-    assign device_outputs[70:71] = dev_ctrl_state_cnt;
-    assign device_outputs[72] = dev_ctrl_clear;
+    assign device_outputs[70:72] = dev_ctrl_state_cnt;
+    assign device_outputs[73] = dev_ctrl_clear;
     
 endmodule
