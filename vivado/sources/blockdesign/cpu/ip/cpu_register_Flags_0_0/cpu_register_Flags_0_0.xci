@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "cpu_register_base_1_1",
-    "cell_name": "register_IR",
-    "component_reference": "xilinx.com:module_ref:register_base:1.0",
+    "xci_name": "cpu_register_Flags_0_0",
+    "cell_name": "register_Flags_0",
+    "component_reference": "xilinx.com:module_ref:register_Flags:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1",
+    "gen_directory": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_Flags_0_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "cpu_register_base_1_1", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "cpu_register_Flags_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "artix7" } ],
@@ -27,7 +27,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_base_1_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_register_Flags_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2023.2" } ],
@@ -36,11 +36,13 @@
     },
     "boundary": {
       "ports": {
-        "Input": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
-        "Output": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "z_in": [ { "direction": "in" } ],
+        "c_in": [ { "direction": "in" } ],
         "clk": [ { "direction": "in" } ],
         "load": [ { "direction": "in" } ],
-        "rst": [ { "direction": "in" } ]
+        "rst": [ { "direction": "in" } ],
+        "z_out": [ { "direction": "out" } ],
+        "c_out": [ { "direction": "out" } ]
       },
       "interfaces": {
         "rst": {

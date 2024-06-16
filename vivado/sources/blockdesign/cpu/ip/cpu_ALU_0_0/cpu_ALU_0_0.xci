@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "cpu_MUX_0_0",
-    "cell_name": "MUX_0",
-    "component_reference": "xilinx.com:module_ref:MUX:1.0",
+    "xci_name": "cpu_ALU_0_0",
+    "cell_name": "ALU_0",
+    "component_reference": "xilinx.com:module_ref:ALU:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_MUX_0_0",
+    "gen_directory": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_ALU_0_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "cpu_MUX_0_0", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "cpu_ALU_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "artix7" } ],
@@ -27,7 +27,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_MUX_0_0" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../FPGA-CPU.gen/sources_1/bd/cpu/ip/cpu_ALU_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2023.2" } ],
@@ -36,12 +36,12 @@
     },
     "boundary": {
       "ports": {
-        "sel": [ { "direction": "in", "size_left": "1", "size_right": "0" } ],
+        "op": [ { "direction": "in", "size_left": "1", "size_right": "0" } ],
         "A": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
         "B": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
-        "C": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
-        "D": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
-        "O": [ { "direction": "out", "size_left": "0", "size_right": "7" } ]
+        "O": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
+        "c": [ { "direction": "out" } ],
+        "z": [ { "direction": "out" } ]
       }
     }
   }
