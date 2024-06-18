@@ -595,43 +595,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "id": "address-control",
-                    "title": "Address Control",
-
-                    "layout_tiles_x": 6,
-                    "layout_tiles_y": 1,
-
-                    "widgets": [
-                        {
-                            "id": "vsc:acb:tl-load",
-                            "widget": "pprobe-basic::binary-state",
-
-                            "config": {
-                                "label": "TL Load",
-                                "$bits": "dev_tl_load"
-                            }
-                        },
-                        {
-                            "id": "vsc:acb:th-load",
-                            "widget": "pprobe-basic::binary-state",
-
-                            "config": {
-                                "label": "TH Load",
-                                "$bits": "dev_th_load"
-                            }
-                        },
-                        {
-                            "id": "vsc:acb:ab-sel",
-                            "widget": "pprobe-basic::binary-state",
-
-                            "config": {
-                                "label": "AB Sel",
-                                "$bits": "dev_ab_sel"
-                            }
-                        }
-                    ]
                 }
             ]
         },
