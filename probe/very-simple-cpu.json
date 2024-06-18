@@ -55,7 +55,15 @@
         "IR_Data": {
             "dir": "TOPI",
             "start": 24,
-            "count": 8
+            "count": 8,
+
+            "valueMap": {
+                "0": "LDA",
+                "1": "ADDA",
+                "2": "STOA",
+                "3": "JMP",
+                "4": "COMA"
+            }
         },
         "DR_Data": {
             "dir": "TOPI",
@@ -150,6 +158,22 @@
         "dev_ctrl_clear": {
             "dir": "TOPI",
             "start": 73
+        },
+        "dev_ar_inc": {
+            "dir": "TOPI",
+            "start": 74
+        },
+        "dev_tl_load": {
+            "dir": "TOPI",
+            "start": 75
+        },
+        "dev_th_load": {
+            "dir": "TOPI",
+            "start": 76
+        },
+        "dev_ab_sel": {
+            "dir": "TOPI",
+            "start": 77
         }
     },
 
@@ -310,11 +334,10 @@
                         },
                         {
                             "id": "vsc:reg:ir-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::mapping",
 
                             "config": {
                                 "label": "IR Data",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "IR_Data"
                             }
@@ -432,12 +455,11 @@
                         },
                         {
                             "id": "vsc:reg:ir-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::mapping",
 
                             "layout": { "size_y": 2 },
                             "config": {
                                 "label": "IR Data",
-                                "mode": "read",
                                 "bitOrder": "MSBF",
                                 "$bits": "IR_Data"
                             }
@@ -557,6 +579,56 @@
                             "config": { 
                                 "label": "PC Inc",
                                 "$bits": "dev_pc_inc"
+                            }
+                        },
+                        {
+                            "id": "vsc:reg:ar-inc",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "layout": {
+                                "pos_x": 2,
+                                "pos_y": 4
+                            },
+                            "config": { 
+                                "label": "AR Inc",
+                                "$bits": "dev_ar_inc"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "address-control",
+                    "title": "Address Control",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:acb:tl-load",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "TL Load",
+                                "$bits": "dev_tl_load"
+                            }
+                        },
+                        {
+                            "id": "vsc:acb:th-load",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "TH Load",
+                                "$bits": "dev_th_load"
+                            }
+                        },
+                        {
+                            "id": "vsc:acb:ab-sel",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "AB Sel",
+                                "$bits": "dev_ab_sel"
                             }
                         }
                     ]

@@ -37,3 +37,7 @@ Bit Index | Signal
 69 | dev_dr_load
 70:72 | dev_ctrl_state_cnt
 73 | dev_ctrl_clear
+74 | dev_ar_inc
+75 | dev_tl_load
+76 | dev_th_load
+77 | dev_ab_sel
