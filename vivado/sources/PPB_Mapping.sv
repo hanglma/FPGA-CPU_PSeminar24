@@ -4,7 +4,7 @@ module PPB_Mapping(
     output [0:119] device_outputs,
     
     input [7:0] DataBus,
-    input [7:0] AddressBus,
+    input [15:0] AddressBus,
     input [7:0] ACC_Data,
     input [7:0] IR_Data,
     input [7:0] DR_Data,
@@ -47,30 +47,30 @@ module PPB_Mapping(
     assign programming_enable = device_inputs[19];
     
     assign device_outputs[0:7] = DataBus;
-    assign device_outputs[8:15] = AddressBus;
-    assign device_outputs[16:23] = ACC_Data;
-    assign device_outputs[24:31] = IR_Data;
-    assign device_outputs[32:39] = DR_Data;
-    assign device_outputs[40:47] = PC_Data;
-    assign device_outputs[48:55] = ALU_O;
-    assign device_outputs[56] = Flags_Z;
-    assign device_outputs[57] = Flags_C;
-    assign device_outputs[58] = memory_WE;
+    assign device_outputs[8:23] = AddressBus;
+    assign device_outputs[24:31] = ACC_Data;
+    assign device_outputs[32:39] = IR_Data;
+    assign device_outputs[40:47] = DR_Data;
+    assign device_outputs[48:63] = PC_Data;
+    assign device_outputs[64:71] = ALU_O;
+    assign device_outputs[72] = Flags_Z;
+    assign device_outputs[73] = Flags_C;
+    assign device_outputs[74] = memory_WE;
     
-    assign device_outputs[59:60] = dev_mux_sel;
-    assign device_outputs[61:64] = dev_alu_op;
-    assign device_outputs[65] = dev_ar_load;
-    assign device_outputs[66] = dev_pc_load;
-    assign device_outputs[67] = dev_pc_inc;
-    assign device_outputs[68] = dev_ac_load;
-    assign device_outputs[69] = dev_zc_load;
-    assign device_outputs[70] = dev_ir_load;
-    assign device_outputs[71] = dev_dr_load;
-    assign device_outputs[72:75] = dev_ctrl_state_cnt;
-    assign device_outputs[76] = dev_ctrl_clear;
-    assign device_outputs[77] = dev_ar_inc;
-    assign device_outputs[78] = dev_tl_load;
-    assign device_outputs[79] = dev_th_load;
-    assign device_outputs[80] = dev_ab_sel;
+    assign device_outputs[75:76] = dev_mux_sel;
+    assign device_outputs[77:80] = dev_alu_op;
+    assign device_outputs[81] = dev_ar_load;
+    assign device_outputs[82] = dev_pc_load;
+    assign device_outputs[83] = dev_pc_inc;
+    assign device_outputs[84] = dev_ac_load;
+    assign device_outputs[85] = dev_zc_load;
+    assign device_outputs[86] = dev_ir_load;
+    assign device_outputs[87] = dev_dr_load;
+    assign device_outputs[88:91] = dev_ctrl_state_cnt;
+    assign device_outputs[92] = dev_ctrl_clear;
+    assign device_outputs[93] = dev_ar_inc;
+    assign device_outputs[94] = dev_tl_load;
+    assign device_outputs[95] = dev_th_load;
+    assign device_outputs[96] = dev_ab_sel;
     
 endmodule

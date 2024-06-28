@@ -44,17 +44,17 @@
         "AddressBus": {
             "dir": "TOPI",
             "start": 8,
-            "count": 8
+            "count": 16
         },
 
         "ACC_Data": {
             "dir": "TOPI",
-            "start": 16,
+            "start": 24,
             "count": 8
         },
         "IR_Data": {
             "dir": "TOPI",
-            "start": 24,
+            "start": 32,
             "count": 8,
 
             "valueMap": {
@@ -79,40 +79,40 @@
         },
         "DR_Data": {
             "dir": "TOPI",
-            "start": 32,
+            "start": 40,
             "count": 8
         },
         "PC_Data": {
             "dir": "TOPI",
-            "start": 40,
-            "count": 8
+            "start": 48,
+            "count": 16
         },
         "ALU_O": {
             "dir": "TOPI",
-            "start": 48,
+            "start": 64,
             "count": 8
         },
         "Flags_Z": {
             "dir": "TOPI",
-            "start": 56
+            "start": 72
         },
         "Flags_C": {
             "dir": "TOPI",
-            "start": 57
+            "start": 73
         },
         "Flag_Data": {
             "dir": "TOPI",
-            "start": 56,
+            "start": 72,
             "count": 2
         },
         "memory_WE": {
             "dir": "TOPI",
-            "start": 58
+            "start": 74
         },
 
         "dev_mux_sel": {
             "dir": "TOPI",
-            "start": 59,
+            "start": 75,
             "count": 2,
 
             "valueMap": {
@@ -124,7 +124,7 @@
         },
         "dev_alu_op": {
             "dir": "TOPI",
-            "start": 61,
+            "start": 77,
             "count": 4,
 
             "valueMap": {
@@ -140,56 +140,56 @@
         },
         "dev_ar_load": {
             "dir": "TOPI",
-            "start": 65
+            "start": 81
         },
         "dev_pc_load": {
             "dir": "TOPI",
-            "start": 66
+            "start": 82
         },
         "dev_pc_inc": {
             "dir": "TOPI",
-            "start": 67
+            "start": 83
         },
         "dev_ac_load": {
             "dir": "TOPI",
-            "start": 68
+            "start": 84
         },
         "dev_zc_load": {
             "dir": "TOPI",
-            "start": 69
+            "start": 85
         },
         "dev_ir_load": {
             "dir": "TOPI",
-            "start": 70
+            "start": 86
         },
         "dev_dr_load": {
             "dir": "TOPI",
-            "start": 71
+            "start": 87
         },
         "dev_ctrl_state_cnt": {
             "dir": "TOPI",
-            "start": 72,
+            "start": 88,
             "count": 4
         },
         "dev_ctrl_clear": {
             "dir": "TOPI",
-            "start": 76
+            "start": 92
         },
         "dev_ar_inc": {
             "dir": "TOPI",
-            "start": 77
+            "start": 93
         },
         "dev_tl_load": {
             "dir": "TOPI",
-            "start": 78
+            "start": 94
         },
         "dev_th_load": {
             "dir": "TOPI",
-            "start": 79
+            "start": 95
         },
         "dev_ab_sel": {
             "dir": "TOPI",
-            "start": 80
+            "start": 96
         }
     },
 

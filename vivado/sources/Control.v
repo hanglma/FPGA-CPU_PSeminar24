@@ -64,7 +64,7 @@ module Control(
     localparam ALU_OR =   4'b0101;
     localparam ALU_XOR =  4'b0110;
     localparam ALU_NOT =  4'b0111;
-    localparam ALU_default = ALU_ZERO;
+    localparam ALU_default = ALU_PASS;
     
     
     reg [3:0] StateCount;
@@ -99,7 +99,7 @@ module Control(
                     
     assign MemoryWE = (Instruction == INS_STA & StateCount == 5) ? 1 : 0;
     
-    assign clear = ((Instruction==INS_NOP|Instruction==INS_LDI|Instruction==INS_MVA|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT) |
+    assign clear = ((StateCount==2 & (Instruction==INS_NOP|Instruction==INS_LDI|Instruction==INS_MVA|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT)) |
                     (StateCount==4 & (Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ)) |
                     (StateCount==5 & (Instruction==INS_STA|Instruction==INS_LDA))
                     ) ? 1:0;
@@ -110,7 +110,7 @@ module Control(
                       (Instruction==INS_JPNZ & StateCount==4 & flag_z==1'b0)
                      ) ? 1 : 0;
                      
-    assign PC_inc = ((Instruction==INS_ADDI|Instruction==INS_SUBI) |
+    assign PC_inc = ((StateCount==2&(Instruction==INS_ADDI|Instruction==INS_SUBI|Instruction==INS_LDI)) |
                      ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3)) |
                      (StateCount==1)
                     ) ? 1:0;
@@ -119,7 +119,7 @@ module Control(
                       (StateCount==4 & (Instruction==INS_LDA|Instruction==INS_STA))
                      ) ? 1:0;
                     
-    assign AR_inc = ((Instruction==INS_ADDI|Instruction==INS_SUBI) |
+    assign AR_inc = ((StateCount==2&(Instruction==INS_ADDI|Instruction==INS_SUBI|Instruction==INS_LDI)) |
                      ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3)) |
                       (StateCount==1)
                     ) ? 1:0;
