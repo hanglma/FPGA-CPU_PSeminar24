@@ -1,72 +1,79 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.16629",
-   "Default View_TopLeft":"817,61",
+   "Default View_ScaleFactor":"0.717939",
+   "Default View_TopLeft":"650,-53",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 170 -defaultsOSRD
-preplace port port-id_rst -pg 1 -lvl 0 -x -10 -y 190 -defaultsOSRD
-preplace port port-id_Flags_Z -pg 1 -lvl 5 -x 1330 -y -80 -defaultsOSRD
-preplace port port-id_Flags_C -pg 1 -lvl 5 -x 1330 -y -60 -defaultsOSRD
-preplace port port-id_memory_WE -pg 1 -lvl 5 -x 1330 -y 140 -defaultsOSRD
-preplace port port-id_dev_ctrl_clear -pg 1 -lvl 5 -x 1330 -y 320 -defaultsOSRD
-preplace port port-id_dev_ar_load -pg 1 -lvl 5 -x 1330 -y 160 -defaultsOSRD
-preplace port port-id_dev_pc_load -pg 1 -lvl 5 -x 1330 -y 180 -defaultsOSRD
-preplace port port-id_dev_pc_inc -pg 1 -lvl 5 -x 1330 -y 200 -defaultsOSRD
-preplace port port-id_dev_ac_load -pg 1 -lvl 5 -x 1330 -y 220 -defaultsOSRD
-preplace port port-id_dev_zc_load -pg 1 -lvl 5 -x 1330 -y 240 -defaultsOSRD
-preplace port port-id_dev_ir_load -pg 1 -lvl 5 -x 1330 -y 260 -defaultsOSRD
-preplace port port-id_dev_dr_load -pg 1 -lvl 5 -x 1330 -y 280 -defaultsOSRD
-preplace portBus AddressBus -pg 1 -lvl 5 -x 1330 -y 1210 -defaultsOSRD
-preplace portBus DataBus -pg 1 -lvl 5 -x 1330 -y 710 -defaultsOSRD
-preplace portBus MemoryWriteBus -pg 1 -lvl 5 -x 1330 -y 680 -defaultsOSRD
-preplace portBus MemoryReadBus -pg 1 -lvl 5 -x 1330 -y 810 -defaultsOSRD -right
-preplace portBus PC_Data -pg 1 -lvl 5 -x 1330 -y 1040 -defaultsOSRD
-preplace portBus DR_Data -pg 1 -lvl 5 -x 1330 -y 870 -defaultsOSRD
-preplace portBus IR_Data -pg 1 -lvl 5 -x 1330 -y 580 -defaultsOSRD
-preplace portBus ACC_Data -pg 1 -lvl 5 -x 1330 -y 550 -defaultsOSRD
-preplace portBus ALU_O -pg 1 -lvl 5 -x 1330 -y -100 -defaultsOSRD
-preplace portBus dev_ctrl_state_cnt -pg 1 -lvl 5 -x 1330 -y 300 -defaultsOSRD
-preplace portBus dev_mux_sel -pg 1 -lvl 5 -x 1330 -y 100 -defaultsOSRD
-preplace portBus dev_alu_op -pg 1 -lvl 5 -x 1330 -y 120 -defaultsOSRD
-preplace inst register_PC -pg 1 -lvl 1 -x 230 -y 1040 -defaultsOSRD
-preplace inst register_ACC -pg 1 -lvl 1 -x 230 -y 550 -defaultsOSRD
-preplace inst register_DR -pg 1 -lvl 1 -x 230 -y 870 -defaultsOSRD
-preplace inst register_IR -pg 1 -lvl 1 -x 230 -y 710 -defaultsOSRD
-preplace inst register_AR -pg 1 -lvl 1 -x 230 -y 1210 -defaultsOSRD
-preplace inst MUX_0 -pg 1 -lvl 4 -x 1050 -y 710 -defaultsOSRD
-preplace inst ALU_0 -pg 1 -lvl 2 -x 480 -y 280 -defaultsOSRD
-preplace inst register_Flags_0 -pg 1 -lvl 3 -x 720 -y 300 -defaultsOSRD
-preplace inst Control_0 -pg 1 -lvl 4 -x 1050 -y 210 -defaultsOSRD
-preplace netloc ALU_0_O 1 0 5 100 390 NJ 390 590 -100 N -100 N
+preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 170 -defaultsOSRD
+preplace port port-id_rst -pg 1 -lvl 0 -x 0 -y 190 -defaultsOSRD
+preplace port port-id_Flags_Z -pg 1 -lvl 5 -x 1600 -y -80 -defaultsOSRD
+preplace port port-id_Flags_C -pg 1 -lvl 5 -x 1600 -y -60 -defaultsOSRD
+preplace port port-id_memory_WE -pg 1 -lvl 5 -x 1600 -y 100 -defaultsOSRD
+preplace port port-id_dev_ctrl_clear -pg 1 -lvl 5 -x 1600 -y 360 -defaultsOSRD
+preplace port port-id_dev_ar_load -pg 1 -lvl 5 -x 1600 -y 120 -defaultsOSRD
+preplace port port-id_dev_pc_load -pg 1 -lvl 5 -x 1600 -y 160 -defaultsOSRD
+preplace port port-id_dev_pc_inc -pg 1 -lvl 5 -x 1600 -y 180 -defaultsOSRD
+preplace port port-id_dev_ac_load -pg 1 -lvl 5 -x 1600 -y 200 -defaultsOSRD
+preplace port port-id_dev_zc_load -pg 1 -lvl 5 -x 1600 -y 220 -defaultsOSRD
+preplace port port-id_dev_ir_load -pg 1 -lvl 5 -x 1600 -y 240 -defaultsOSRD
+preplace port port-id_dev_dr_load -pg 1 -lvl 5 -x 1600 -y 260 -defaultsOSRD
+preplace port port-id_dev_ar_inc -pg 1 -lvl 5 -x 1600 -y 140 -defaultsOSRD
+preplace port port-id_dev_tl_load -pg 1 -lvl 5 -x 1600 -y 280 -defaultsOSRD
+preplace port port-id_dev_th_load -pg 1 -lvl 5 -x 1600 -y 300 -defaultsOSRD
+preplace port port-id_dev_ab_sel -pg 1 -lvl 5 -x 1600 -y 320 -defaultsOSRD
+preplace portBus AddressBus -pg 1 -lvl 5 -x 1600 -y 1140 -defaultsOSRD
+preplace portBus DataBus -pg 1 -lvl 5 -x 1600 -y 710 -defaultsOSRD
+preplace portBus MemoryWriteBus -pg 1 -lvl 5 -x 1600 -y 680 -defaultsOSRD
+preplace portBus MemoryReadBus -pg 1 -lvl 5 -x 1600 -y 810 -defaultsOSRD -right
+preplace portBus PC_Data -pg 1 -lvl 5 -x 1600 -y 1120 -defaultsOSRD
+preplace portBus DR_Data -pg 1 -lvl 5 -x 1600 -y 870 -defaultsOSRD
+preplace portBus IR_Data -pg 1 -lvl 5 -x 1600 -y 580 -defaultsOSRD
+preplace portBus ACC_Data -pg 1 -lvl 5 -x 1600 -y 550 -defaultsOSRD
+preplace portBus ALU_O -pg 1 -lvl 5 -x 1600 -y -100 -defaultsOSRD
+preplace portBus dev_mux_sel -pg 1 -lvl 5 -x 1600 -y 60 -defaultsOSRD
+preplace portBus dev_alu_op -pg 1 -lvl 5 -x 1600 -y 80 -defaultsOSRD
+preplace portBus dev_ctrl_state_cnt -pg 1 -lvl 5 -x 1600 -y 340 -defaultsOSRD
+preplace inst register_ACC -pg 1 -lvl 1 -x 190 -y 550 -defaultsOSRD
+preplace inst register_DR -pg 1 -lvl 1 -x 190 -y 870 -defaultsOSRD
+preplace inst register_IR -pg 1 -lvl 1 -x 190 -y 710 -defaultsOSRD
+preplace inst MUX_0 -pg 1 -lvl 4 -x 1170 -y 710 -defaultsOSRD
+preplace inst ALU_0 -pg 1 -lvl 2 -x 580 -y 280 -defaultsOSRD
+preplace inst register_Flags_0 -pg 1 -lvl 3 -x 880 -y 300 -defaultsOSRD
+preplace inst Control_0 -pg 1 -lvl 4 -x 1170 -y 210 -defaultsOSRD
+preplace inst AddressControl_0 -pg 1 -lvl 2 -x 580 -y 1130 -defaultsOSRD
+preplace netloc ALU_0_O 1 0 5 70 190 NJ 190 740 -100 N -100 N
 preplace netloc ALU_0_c 1 2 1 N 280
-preplace netloc ALU_0_z 1 2 1 600 260n
-preplace netloc Control_0_AC_load 1 0 5 40 -10 NJ -10 NJ -10 NJ -10 1260
-preplace netloc Control_0_ALU_op 1 1 4 380 10 NJ 10 NJ 10 1240
-preplace netloc Control_0_AR_load 1 0 5 50 20 NJ 20 NJ 20 NJ 20 1230
-preplace netloc Control_0_DR_load 1 0 5 90 430 NJ 430 NJ 430 870J 390 1210
-preplace netloc Control_0_IR_load 1 0 5 110 400 NJ 400 NJ 400 NJ 400 1240
-preplace netloc Control_0_MUX_sel 1 3 2 890 40 1210
-preplace netloc Control_0_PC_inc 1 0 5 60 0 NJ 0 NJ 0 NJ 0 1250
-preplace netloc Control_0_PC_load 1 0 5 80 30 NJ 30 NJ 30 NJ 30 1220
-preplace netloc Control_0_ZC_load 1 2 3 620 410 NJ 410 1260
-preplace netloc Control_0_dev_clear 1 4 1 N 320
-preplace netloc Control_0_dev_state_count 1 4 1 N 300
-preplace netloc Control_0_memory_WE 1 4 1 N 140
-preplace netloc MemoryReadBus_1 1 3 2 890 810 N
-preplace netloc Net 1 0 5 70 420 380J 420 N 420 N 420 1260
-preplace netloc Net1 1 0 4 30 170 N 170 620 170 N
-preplace netloc Net2 1 0 4 20 190 N 190 580 190 N
-preplace netloc register_ACC_Output 1 1 4 370J 550 N 550 840 550 N
-preplace netloc register_AR_Output 1 1 4 N 1210 N 1210 N 1210 N
-preplace netloc register_DR_Output 1 1 4 NJ 870 NJ 870 870 870 N
-preplace netloc register_Flags_0_c_out 1 3 2 850 -60 N
-preplace netloc register_Flags_0_z_out 1 3 2 840 -80 N
-preplace netloc register_IR_Output 1 1 4 NJ 710 N 710 860 580 N
-preplace netloc register_PC_Output 1 1 4 N 1040 N 1040 880 1040 N
-levelinfo -pg 1 -10 230 480 720 1050 1330
-pagesize -pg 1 -db -bbox -sgen -200 -120 1550 1290
+preplace netloc ALU_0_z 1 2 1 750 260n
+preplace netloc AddressControl_0_AddressRegister 1 2 3 NJ 1140 NJ 1140 N
+preplace netloc Control_0_AB_sel 1 1 4 380 450 NJ 450 NJ 450 1330
+preplace netloc Control_0_AC_load 1 0 5 50 -90 NJ -90 NJ -90 NJ -90 1410
+preplace netloc Control_0_AR_inc 1 1 4 370 -60 NJ -60 NJ -60 1390
+preplace netloc Control_0_AR_load 1 1 4 390 -40 N -40 N -40 1350
+preplace netloc Control_0_DR_load 1 0 5 40 420 NJ 420 NJ 420 NJ 420 1370
+preplace netloc Control_0_IR_load 1 0 5 60 430 NJ 430 NJ 430 NJ 430 1390
+preplace netloc Control_0_MUX_sel 1 3 2 1010 0 1330
+preplace netloc Control_0_PC_inc 1 1 4 410 -30 N -30 N -30 1380
+preplace netloc Control_0_PC_load 1 1 4 420 -20 N -20 N -20 1340
+preplace netloc Control_0_TH_load 1 1 4 360 440 NJ 440 NJ 440 1350
+preplace netloc Control_0_TL_load 1 1 4 400 540 NJ 540 NJ 540 1410
+preplace netloc Control_0_ZC_load 1 2 3 780 -10 NJ -10 1370
+preplace netloc Control_0_dev_clear 1 4 1 N 360
+preplace netloc Control_0_memory_WE 1 4 1 N 100
+preplace netloc MemoryReadBus_1 1 3 2 1010 810 N
+preplace netloc Net 1 0 5 70 960 350 610 NJ 610 NJ 610 1330
+preplace netloc Net1 1 0 4 30 360 340 360 760 170 N
+preplace netloc Net2 1 0 4 20 370 320 370 770 190 N
+preplace netloc register_ACC_Output 1 1 4 330J 550 N 550 1000 550 N
+preplace netloc register_DR_Output 1 1 4 NJ 870 NJ 870 980 870 N
+preplace netloc register_Flags_0_c_out 1 3 2 1000 -50 1400
+preplace netloc register_Flags_0_z_out 1 3 2 980 -70 1400
+preplace netloc register_IR_Output 1 1 4 310J 200 N 200 990 580 N
+preplace netloc AddressControl_0_ProgramCounter 1 2 3 N 1120 NJ 1120 NJ
+preplace netloc Control_0_ALU_op 1 1 4 400 -80 NJ -80 NJ -80 1360
+preplace netloc Control_0_dev_state_count 1 4 1 N 340
+levelinfo -pg 1 0 190 580 880 1170 1600
+pagesize -pg 1 -db -bbox -sgen -200 -120 1800 1290
 "
 }
 0

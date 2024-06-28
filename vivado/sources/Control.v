@@ -8,45 +8,66 @@ module Control(
     input flag_c,           // ALU Carry Flag
     
     output [1:0] MUX_sel,   // MUX selector
-    output [1:0] ALU_op,    // ALU operation,
+    output [3:0] ALU_op,    // ALU operation,
     
     output memory_WE,       // Memory Write Enable
     
     output AR_load,         // Address Register Load
+    output AR_inc,          // Address Register Increment
     output PC_load,         // Program Counter Load
     output PC_inc,          // Program Counter Increment
     output AC_load,         // Accumulator Load
     output ZC_load,         // Flag Register Load
     output IR_load,         // Instruction Register Load
     output DR_load,         // Data Register Load
+    output TL_load,         // AddressControl TempLow Load
+    output TH_load,         // AddressControl TempHigh Load
+    output AB_sel,
     
     /// IO for development & debugging ///
-    output [2:0] dev_state_count,
+    output [3:0] dev_state_count,
     output clear
     );
     
     // Instructions //
-    localparam INS_LDA  = 8'h00;
-    localparam INS_ADDA = 8'h01;
-    localparam INS_STOA = 8'h02;
-    localparam INS_JMP  = 8'h03;
-    localparam INS_COMA = 8'h04;
+    localparam INS_NOP  = 8'h00;
+    localparam INS_LDI  = 8'h01;
+    localparam INS_LDA  = 8'h02;
+    localparam INS_STA  = 8'h03;
+    localparam INS_MVA  = 8'h04;
+    localparam INS_JMP  = 8'h05;
+    localparam INS_JMPZ = 8'h06;
+    localparam INS_JPNZ = 8'h07;
+    localparam INS_ADD  = 8'h08;
+    localparam INS_ADDI = 8'h09;
+    localparam INS_SUB  = 8'h0A;
+    localparam INS_SUBI = 8'h0B;
+    localparam INS_CLA  = 8'h0C;
+    localparam INS_AND  = 8'h0D;
+    localparam INS_OR   = 8'h0E;
+    localparam INS_XOR  = 8'h0F;
+    localparam INS_NOT  = 8'h10;
     
     // MUX Settings //
     localparam MUX_ACC = 2'b00;
     localparam MUX_DR  = 2'b01;
     localparam MUX_PC  = 2'b10;
     localparam MUX_MEM = 2'b11;
+    localparam MUX_default = MUX_ACC;
     
     // ALU Operations //
-    localparam ALU_ADD = 2'b00;
-    localparam ALU_PAS = 2'b01;
-    localparam ALU_AND = 2'b10;
-    localparam ALU_COM = 2'b11;
+    localparam ALU_ZERO = 4'b0000;
+    localparam ALU_PASS = 4'b0001;
+    localparam ALU_ADD =  4'b0010;
+    localparam ALU_SUB =  4'b0011;
+    localparam ALU_AND =  4'b0100;
+    localparam ALU_OR =   4'b0101;
+    localparam ALU_XOR =  4'b0110;
+    localparam ALU_NOT =  4'b0111;
+    localparam ALU_default = ALU_ZERO;
     
     
-    reg [2:0] StateCount;
-    //wire clear;
+    reg [3:0] StateCount;
     
     always @(negedge clk) begin
         StateCount <= StateCount + 1;
@@ -57,28 +78,67 @@ module Control(
                 StateCount <= 0;
             end
         end
-        //StateCount <= StateCount + 1;
     end
     
-    assign AR_load = (StateCount == 0) |
-                     (StateCount == 2 & (Instruction==INS_LDA | Instruction==INS_STOA | Instruction==INS_ADDA | Instruction==INS_JMP)) |
-                     (StateCount == 3 & (Instruction==INS_STOA)) ? 1 : 0;
-    assign PC_load = (StateCount == 3 & Instruction==INS_JMP) ? 1 : 0;
-    assign IR_load = (StateCount == 1) ? 1 : 0;
-    assign AC_load = (StateCount == 2 & Instruction==INS_COMA) | (StateCount==3 & (Instruction==INS_LDA | Instruction == INS_ADDA)) ? 1 : 0;
-    assign PC_inc  = (StateCount == 1) | (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_STOA | Instruction==INS_ADDA)) ? 1 : 0;
-    assign ZC_load = (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_ADDA)) |
-                     (StateCount == 2 & Instruction==INS_COMA) ? 1 : 0;
-    assign clear   = (StateCount == 2 & Instruction==INS_COMA) |
-                     (StateCount == 3 & (Instruction==INS_LDA | Instruction==INS_ADDA | Instruction==INS_JMP)) |
-                     (StateCount == 4 & Instruction==INS_STOA) ? 1 : 0;
-    assign memory_WE = (StateCount==4 & Instruction==INS_STOA) ? 1 : 0;
-    assign MUX_sel = (StateCount==0 | StateCount==2) ? MUX_PC :
-                     (StateCount==1 | StateCount==3) ? MUX_MEM :
-                     (StateCount==4 & Instruction==INS_STOA) ? MUX_ACC : 0;
-    assign ALU_op  = (Instruction==INS_LDA) ? ALU_PAS :
-                     (Instruction==INS_ADDA) ? ALU_ADD :
-                     (Instruction==INS_COMA) ? ALU_COM : 0;
+    // whatever you are doing right now, dont scroll further
+    // it only gets worse from here
+    
+    assign MUX_sel = ((Instruction==INS_STA & StateCount==5) | (Instruction==INS_MVA & StateCount==2)) ? MUX_ACC : (
+                     (StateCount == 3 & (Instruction==INS_ADD | Instruction==INS_SUB | Instruction==INS_AND | Instruction==INS_OR | Instruction==INS_XOR | Instruction==INS_XOR)) ? MUX_DR : (
+                     (StateCount == 1 | Instruction==INS_SUBI | Instruction==INS_ADDI | Instruction==INS_LDI | (Instruction==INS_LDA & StateCount == 5) | ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3))) ? MUX_MEM : MUX_default ));
+    
+    assign ALU_op =  Instruction==INS_CLA ? ALU_ZERO : (
+                        Instruction==INS_AND ? ALU_AND : (
+                        Instruction==INS_OR ? ALU_OR: (
+                        Instruction==INS_XOR ? ALU_XOR : (
+                        Instruction==INS_NOT ? ALU_NOT : (
+                        (Instruction==INS_ADD | Instruction==INS_ADDI) ? ALU_ADD : (
+                        (Instruction==INS_SUB | Instruction==INS_SUBI) ? ALU_SUB : ALU_default
+                        )))))
+                    );
+                    
+    assign MemoryWE = (Instruction == INS_STA & StateCount == 5) ? 1 : 0;
+    
+    assign clear = ((Instruction==INS_NOP|Instruction==INS_LDI|Instruction==INS_MVA|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT) |
+                    (StateCount==4 & (Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ)) |
+                    (StateCount==5 & (Instruction==INS_STA|Instruction==INS_LDA))
+                    ) ? 1:0;
+                    
+                    
+    assign PC_load = ((Instruction==INS_JMP & StateCount==4) |
+                      (Instruction==INS_JMPZ & StateCount==4 & flag_z==1'b1) |
+                      (Instruction==INS_JPNZ & StateCount==4 & flag_z==1'b0)
+                     ) ? 1 : 0;
+                     
+    assign PC_inc = ((Instruction==INS_ADDI|Instruction==INS_SUBI) |
+                     ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3)) |
+                     (StateCount==1)
+                    ) ? 1:0;
+                    
+    assign AR_load = ((StateCount==0) |
+                      (StateCount==4 & (Instruction==INS_LDA|Instruction==INS_STA))
+                     ) ? 1:0;
+                    
+    assign AR_inc = ((Instruction==INS_ADDI|Instruction==INS_SUBI) |
+                     ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3)) |
+                      (StateCount==1)
+                    ) ? 1:0;
+                    
+    assign TH_load = (StateCount==2 & (Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ)) ? 1:0;
+    assign TL_load = (StateCount==3 & (Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ)) ? 1:0;
+    
+    assign AB_sel  = (StateCount == 0) ? 1:0;
+    
+    
+    assign AC_load = ((StateCount==2 & (Instruction==INS_LDI|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT)) |
+                      (Instruction==INS_LDA & StateCount==4)
+                     ) ? 1:0;
+                     
+    assign IR_load = (StateCount==1) ? 1:0;
+    
+    assign DR_load = (Instruction==INS_MVA) ? 1:0;
+    
+    assign ZC_load = (Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT) ? 1:0;
     
     assign dev_state_count  = StateCount;
     //assign dev_clear        = clear;

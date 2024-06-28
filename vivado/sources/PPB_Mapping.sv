@@ -15,7 +15,7 @@ module PPB_Mapping(
     input memory_WE,
     
     input [1:0] dev_mux_sel,
-    input [1:0] dev_alu_op,
+    input [3:0] dev_alu_op,
     input dev_ar_load,
     input dev_pc_load,
     input dev_pc_inc,
@@ -23,8 +23,12 @@ module PPB_Mapping(
     input dev_zc_load,
     input dev_ir_load,
     input dev_dr_load,
-    input [2:0] dev_ctrl_state_cnt,
+    input [3:0] dev_ctrl_state_cnt,
     input dev_ctrl_clear,
+    input dev_ar_inc,
+    input dev_tl_load,
+    input dev_th_load,
+    input dev_ab_sel,
     
     output clk_auto_en,
     output clk_step,
@@ -54,15 +58,19 @@ module PPB_Mapping(
     assign device_outputs[58] = memory_WE;
     
     assign device_outputs[59:60] = dev_mux_sel;
-    assign device_outputs[61:62] = dev_alu_op;
-    assign device_outputs[63] = dev_ar_load;
-    assign device_outputs[64] = dev_pc_load;
-    assign device_outputs[65] = dev_pc_inc;
-    assign device_outputs[66] = dev_ac_load;
-    assign device_outputs[67] = dev_zc_load;
-    assign device_outputs[68] = dev_ir_load;
-    assign device_outputs[69] = dev_dr_load;
-    assign device_outputs[70:72] = dev_ctrl_state_cnt;
-    assign device_outputs[73] = dev_ctrl_clear;
+    assign device_outputs[61:64] = dev_alu_op;
+    assign device_outputs[65] = dev_ar_load;
+    assign device_outputs[66] = dev_pc_load;
+    assign device_outputs[67] = dev_pc_inc;
+    assign device_outputs[68] = dev_ac_load;
+    assign device_outputs[69] = dev_zc_load;
+    assign device_outputs[70] = dev_ir_load;
+    assign device_outputs[71] = dev_dr_load;
+    assign device_outputs[72:75] = dev_ctrl_state_cnt;
+    assign device_outputs[76] = dev_ctrl_clear;
+    assign device_outputs[77] = dev_ar_inc;
+    assign device_outputs[78] = dev_tl_load;
+    assign device_outputs[79] = dev_th_load;
+    assign device_outputs[80] = dev_ab_sel;
     
 endmodule

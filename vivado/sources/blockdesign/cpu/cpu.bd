@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x55A17FD1E4689A24",
+      "boundary_crc": "0xA843B80EEAB94972",
       "device": "xc7a35ticsg324-1L",
       "gen_directory": "../../../../FPGA-CPU.gen/sources_1/bd/cpu",
       "name": "cpu",
@@ -11,15 +11,14 @@
       "validated": "true"
     },
     "design_tree": {
-      "register_PC": "",
       "register_ACC": "",
       "register_DR": "",
       "register_IR": "",
-      "register_AR": "",
       "MUX_0": "",
       "ALU_0": "",
       "register_Flags_0": "",
-      "Control_0": ""
+      "Control_0": "",
+      "AddressControl_0": ""
     },
     "ports": {
       "clk": {
@@ -67,7 +66,7 @@
       "AddressBus": {
         "type": "data",
         "direction": "O",
-        "left": "7",
+        "left": "15",
         "right": "0",
         "parameters": {
           "LAYERED_METADATA": {
@@ -93,7 +92,7 @@
       },
       "PC_Data": {
         "direction": "O",
-        "left": "7",
+        "left": "15",
         "right": "0"
       },
       "DR_Data": {
@@ -137,11 +136,6 @@
       "memory_WE": {
         "direction": "O"
       },
-      "dev_ctrl_state_cnt": {
-        "direction": "O",
-        "left": "2",
-        "right": "0"
-      },
       "dev_ctrl_clear": {
         "direction": "O"
       },
@@ -171,71 +165,30 @@
         "left": "1",
         "right": "0"
       },
+      "dev_ar_inc": {
+        "direction": "O"
+      },
+      "dev_tl_load": {
+        "direction": "O"
+      },
+      "dev_th_load": {
+        "direction": "O"
+      },
+      "dev_ab_sel": {
+        "direction": "O"
+      },
       "dev_alu_op": {
         "direction": "O",
-        "left": "1",
+        "left": "3",
+        "right": "0"
+      },
+      "dev_ctrl_state_cnt": {
+        "direction": "O",
+        "left": "3",
         "right": "0"
       }
     },
     "components": {
-      "register_PC": {
-        "vlnv": "xilinx.com:module_ref:register_PC:1.0",
-        "ip_revision": "1",
-        "xci_name": "cpu_register_PC_0_0",
-        "xci_path": "ip/cpu_register_PC_0_0/cpu_register_PC_0_0.xci",
-        "inst_hier_path": "register_PC",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "register_PC",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "Input": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "Output": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "cpu_clk",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "load": {
-            "direction": "I"
-          },
-          "inc": {
-            "direction": "I"
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_HIGH",
-                "value_src": "user_prop"
-              }
-            }
-          }
-        }
-      },
       "register_ACC": {
         "vlnv": "xilinx.com:module_ref:register_base:1.0",
         "ip_revision": "1",
@@ -413,61 +366,6 @@
           }
         }
       },
-      "register_AR": {
-        "vlnv": "xilinx.com:module_ref:register_base:1.0",
-        "ip_revision": "1",
-        "xci_name": "cpu_register_base_2_0",
-        "xci_path": "ip/cpu_register_base_2_0/cpu_register_base_2_0.xci",
-        "inst_hier_path": "register_AR",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "register_base",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "Input": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "Output": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          },
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst",
-                "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "cpu_clk",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "load": {
-            "direction": "I"
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_HIGH",
-                "value_src": "user_prop"
-              }
-            }
-          }
-        }
-      },
       "MUX_0": {
         "vlnv": "xilinx.com:module_ref:MUX:1.0",
         "ip_revision": "1",
@@ -538,7 +436,7 @@
         "ports": {
           "op": {
             "direction": "I",
-            "left": "1",
+            "left": "3",
             "right": "0"
           },
           "A": {
@@ -685,13 +583,16 @@
           },
           "ALU_op": {
             "direction": "O",
-            "left": "1",
+            "left": "3",
             "right": "0"
           },
           "memory_WE": {
             "direction": "O"
           },
           "AR_load": {
+            "direction": "O"
+          },
+          "AR_inc": {
             "direction": "O"
           },
           "PC_load": {
@@ -712,13 +613,100 @@
           "DR_load": {
             "direction": "O"
           },
+          "TL_load": {
+            "direction": "O"
+          },
+          "TH_load": {
+            "direction": "O"
+          },
+          "AB_sel": {
+            "direction": "O"
+          },
           "dev_state_count": {
             "direction": "O",
-            "left": "2",
+            "left": "3",
             "right": "0"
           },
           "clear": {
             "direction": "O"
+          }
+        }
+      },
+      "AddressControl_0": {
+        "vlnv": "xilinx.com:module_ref:AddressControl:1.0",
+        "ip_revision": "1",
+        "xci_name": "cpu_AddressControl_0_0",
+        "xci_path": "ip/cpu_AddressControl_0_0/cpu_AddressControl_0_0.xci",
+        "inst_hier_path": "AddressControl_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "AddressControl",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "cpu_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "PC_load": {
+            "direction": "I"
+          },
+          "PC_inc": {
+            "direction": "I"
+          },
+          "AR_load": {
+            "direction": "I"
+          },
+          "AR_inc": {
+            "direction": "I"
+          },
+          "TL_load": {
+            "direction": "I"
+          },
+          "TH_load": {
+            "direction": "I"
+          },
+          "sel": {
+            "direction": "I"
+          },
+          "DataBus": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "ProgramCounter": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "AddressRegister": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           }
         }
       }
@@ -743,6 +731,25 @@
           "register_Flags_0/z_in"
         ]
       },
+      "AddressControl_0_AddressRegister": {
+        "ports": [
+          "AddressControl_0/AddressRegister",
+          "AddressBus"
+        ]
+      },
+      "AddressControl_0_ProgramCounter": {
+        "ports": [
+          "AddressControl_0/ProgramCounter",
+          "PC_Data"
+        ]
+      },
+      "Control_0_AB_sel": {
+        "ports": [
+          "Control_0/AB_sel",
+          "AddressControl_0/sel",
+          "dev_ab_sel"
+        ]
+      },
       "Control_0_AC_load": {
         "ports": [
           "Control_0/AC_load",
@@ -757,11 +764,18 @@
           "dev_alu_op"
         ]
       },
+      "Control_0_AR_inc": {
+        "ports": [
+          "Control_0/AR_inc",
+          "AddressControl_0/AR_inc",
+          "dev_ar_inc"
+        ]
+      },
       "Control_0_AR_load": {
         "ports": [
           "Control_0/AR_load",
-          "register_AR/load",
-          "dev_ar_load"
+          "dev_ar_load",
+          "AddressControl_0/AR_load"
         ]
       },
       "Control_0_DR_load": {
@@ -788,15 +802,29 @@
       "Control_0_PC_inc": {
         "ports": [
           "Control_0/PC_inc",
-          "register_PC/inc",
-          "dev_pc_inc"
+          "dev_pc_inc",
+          "AddressControl_0/PC_inc"
         ]
       },
       "Control_0_PC_load": {
         "ports": [
           "Control_0/PC_load",
-          "register_PC/load",
-          "dev_pc_load"
+          "dev_pc_load",
+          "AddressControl_0/PC_load"
+        ]
+      },
+      "Control_0_TH_load": {
+        "ports": [
+          "Control_0/TH_load",
+          "AddressControl_0/TH_load",
+          "dev_th_load"
+        ]
+      },
+      "Control_0_TL_load": {
+        "ports": [
+          "Control_0/TL_load",
+          "AddressControl_0/TL_load",
+          "dev_tl_load"
         ]
       },
       "Control_0_ZC_load": {
@@ -837,10 +865,17 @@
           "MemoryWriteBus",
           "register_DR/Input",
           "register_IR/Input",
-          "register_AR/Input",
-          "register_PC/Input",
+          "AddressControl_0/DataBus",
           "ALU_0/B"
-        ]
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "Net1": {
         "ports": [
@@ -848,9 +883,8 @@
           "register_ACC/clk",
           "register_DR/clk",
           "register_IR/clk",
-          "register_AR/clk",
           "register_Flags_0/clk",
-          "register_PC/clk",
+          "AddressControl_0/clk",
           "Control_0/clk"
         ]
       },
@@ -860,9 +894,8 @@
           "register_ACC/rst",
           "register_DR/rst",
           "register_IR/rst",
-          "register_AR/rst",
-          "register_PC/rst",
           "register_Flags_0/rst",
+          "AddressControl_0/rst",
           "Control_0/rst"
         ]
       },
@@ -872,12 +905,6 @@
           "ACC_Data",
           "MUX_0/A",
           "ALU_0/A"
-        ]
-      },
-      "register_AR_Output": {
-        "ports": [
-          "register_AR/Output",
-          "AddressBus"
         ]
       },
       "register_DR_Output": {
@@ -906,13 +933,6 @@
           "register_IR/Output",
           "IR_Data",
           "Control_0/Instruction"
-        ]
-      },
-      "register_PC_Output": {
-        "ports": [
-          "register_PC/Output",
-          "PC_Data",
-          "MUX_0/C"
         ]
       }
     }

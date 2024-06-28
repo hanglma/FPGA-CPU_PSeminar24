@@ -58,11 +58,23 @@
             "count": 8,
 
             "valueMap": {
-                "0": "LDA",
-                "1": "ADDA",
-                "2": "STOA",
-                "3": "JMP",
-                "4": "COMA"
+                "0": "NOP",
+                "1": "LDI",
+                "2": "LDA",
+                "3": "STA",
+                "4": "MVA",
+                "5": "JMP",
+                "6": "JMPZ",
+                "7": "JPNZ",
+                "8": "ADD",
+                "9": "ADDI",
+                "10": "SUB",
+                "11": "SUBI",
+                "12": "CLA",
+                "13": "AND",
+                "14": "OR",
+                "15": "XOR",
+                "16": "NOT"
             }
         },
         "DR_Data": {
@@ -113,67 +125,71 @@
         "dev_alu_op": {
             "dir": "TOPI",
             "start": 61,
-            "count": 2,
+            "count": 4,
 
             "valueMap": {
-                "0": "Add",
+                "0": "Zero",
                 "1": "Passthrough",
-                "2": "Logical And",
-                "3": "Complement A"
+                "2": "Add",
+                "3": "Sub",
+                "4": "AND",
+                "5": "OR",
+                "6": "XOR",
+                "7": "NOT"
             }
         },
         "dev_ar_load": {
             "dir": "TOPI",
-            "start": 63
+            "start": 65
         },
         "dev_pc_load": {
             "dir": "TOPI",
-            "start": 64
+            "start": 66
         },
         "dev_pc_inc": {
             "dir": "TOPI",
-            "start": 65
+            "start": 67
         },
         "dev_ac_load": {
             "dir": "TOPI",
-            "start": 66
+            "start": 68
         },
         "dev_zc_load": {
             "dir": "TOPI",
-            "start": 67
+            "start": 69
         },
         "dev_ir_load": {
             "dir": "TOPI",
-            "start": 68
+            "start": 70
         },
         "dev_dr_load": {
             "dir": "TOPI",
-            "start": 69
+            "start": 71
         },
         "dev_ctrl_state_cnt": {
             "dir": "TOPI",
-            "start": 70,
-            "count": 3
+            "start": 72,
+            "count": 4
         },
         "dev_ctrl_clear": {
             "dir": "TOPI",
-            "start": 73
+            "start": 76
         },
         "dev_ar_inc": {
             "dir": "TOPI",
-            "start": 74
+            "start": 77
         },
         "dev_tl_load": {
             "dir": "TOPI",
-            "start": 75
+            "start": 78
         },
         "dev_th_load": {
             "dir": "TOPI",
-            "start": 76
+            "start": 79
         },
         "dev_ab_sel": {
             "dir": "TOPI",
-            "start": 77
+            "start": 80
         }
     },
 
@@ -592,6 +608,43 @@
                             "config": { 
                                 "label": "AR Inc",
                                 "$bits": "dev_ar_inc"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "address-control",
+                    "title": "Address Control",
+
+                    "layout_tiles_x": 6,
+                    "layout_tiles_y": 1,
+
+                    "widgets": [
+                        {
+                            "id": "vsc:acb:tl-load",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "TL Load",
+                                "$bits": "dev_tl_load"
+                            }
+                        },
+                        {
+                            "id": "vsc:acb:th-load",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "TH Load",
+                                "$bits": "dev_th_load"
+                            }
+                        },
+                        {
+                            "id": "vsc:acb:ab-sel",
+                            "widget": "pprobe-basic::binary-state",
+
+                            "config": {
+                                "label": "AB Sel",
+                                "$bits": "dev_ab_sel"
                             }
                         }
                     ]

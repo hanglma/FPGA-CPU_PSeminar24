@@ -83,7 +83,11 @@ module top(
         .dev_ir_load(io.dev_ir_load),
         .dev_dr_load(io.dev_dr_load),
         .dev_ctrl_state_cnt(io.dev_ctrl_state_cnt),
-        .dev_ctrl_clear(io.dev_ctrl_clear)
+        .dev_ctrl_clear(io.dev_ctrl_clear),
+        .dev_ar_inc(io.dev_ar_inc),
+        .dev_tl_load(io.dev_tl_load),
+        .dev_th_load(io.dev_th_load),
+        .dev_ab_sel(io.dev_ab_sel)
     );
     
     assign io.AddressBus = core0.AddressBus;

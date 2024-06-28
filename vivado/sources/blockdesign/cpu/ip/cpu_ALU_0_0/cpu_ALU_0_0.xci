@@ -36,7 +36,7 @@
     },
     "boundary": {
       "ports": {
-        "op": [ { "direction": "in", "size_left": "1", "size_right": "0" } ],
+        "op": [ { "direction": "in", "size_left": "3", "size_right": "0" } ],
         "A": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
         "B": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
         "O": [ { "direction": "out", "size_left": "7", "size_right": "0" } ],
