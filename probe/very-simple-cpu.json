@@ -74,7 +74,12 @@
                 "13": "AND",
                 "14": "OR",
                 "15": "XOR",
-                "16": "NOT"
+                "16": "NOT",
+                "17": "GT",
+                "18": "GTE",
+                "19": "LT",
+                "20": "LTE",
+                "21": "EQ"
             }
         },
         "DR_Data": {
@@ -135,7 +140,12 @@
                 "4": "AND",
                 "5": "OR",
                 "6": "XOR",
-                "7": "NOT"
+                "7": "NOT",
+                "8": "GT",
+                "9": "GTE",
+                "10": "LT",
+                "11": "LTE",
+                "12": "EQ"
             }
         },
         "dev_ar_load": {
@@ -459,12 +469,12 @@
                         },
                         {
                             "id": "vsc:reg:dr-data",
-                            "widget": "pprobe-basic::bits",
+                            "widget": "pprobe-basic::number",
 
                             "layout": { "size_y": 2 },
                             "config": {
                                 "label": "DR Data",
-                                "mode": "read",
+                                "system": "decimal",
                                 "bitOrder": "MSBF",
                                 "$bits": "DR_Data"
                             }

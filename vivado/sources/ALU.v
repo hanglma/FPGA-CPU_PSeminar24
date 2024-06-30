@@ -15,7 +15,7 @@ module ALU(
     
     always @(*) begin
         case(op)
-            4'b0000: internal <= 0;       // Zero
+            4'b0000: internal <= 0;         // Zero
             4'b0001: internal <= B;         // Passthrough
             
             4'b0010: internal <= A + B;     // Add
@@ -25,6 +25,12 @@ module ALU(
             4'b0101: internal <= A | B;     // OR operation
             4'b0110: internal <= A ^ B;     // XOR operation
             4'b0111: internal <= !A;        // NOT operation
+            
+            4'b1000: internal <= (A >  B) ? 'b1:'b0;    // GT comparison
+            4'b1001: internal <= (A >= B) ? 'b1:'b0;    // GTE comparison
+            4'b1010: internal <= (A <  B) ? 'b1:'b0;    // LT comparison
+            4'b1011: internal <= (A <= B) ? 'b1:'b0;    // LTE comparison
+            4'b1100: internal <= (A == B) ? 'b1:'b0;    // EQ comparison
             
             default: internal <= 0;
         endcase

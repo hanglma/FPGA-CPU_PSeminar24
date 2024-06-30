@@ -760,8 +760,8 @@
       "Control_0_ALU_op": {
         "ports": [
           "Control_0/ALU_op",
-          "ALU_0/op",
-          "dev_alu_op"
+          "dev_alu_op",
+          "ALU_0/op"
         ]
       },
       "Control_0_AR_inc": {

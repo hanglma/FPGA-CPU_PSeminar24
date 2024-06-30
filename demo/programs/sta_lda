@@ -1,0 +1,12 @@
+Test program to debug the STA and LDA instructions
+
+cla
+ldi 0x69
+
+sta 0x0100
+cla
+lda 0x0100
+
+
+
+0C01690301000C020100

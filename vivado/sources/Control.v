@@ -47,6 +47,11 @@ module Control(
     localparam INS_OR   = 8'h0E;
     localparam INS_XOR  = 8'h0F;
     localparam INS_NOT  = 8'h10;
+    localparam INS_GT   = 8'h11;
+    localparam INS_GTE  = 8'h12;
+    localparam INS_LT   = 8'h13;
+    localparam INS_LTE  = 8'h14;
+    localparam INS_EQ   = 8'h15;
     
     // MUX Settings //
     localparam MUX_ACC = 2'b00;
@@ -64,6 +69,11 @@ module Control(
     localparam ALU_OR =   4'b0101;
     localparam ALU_XOR =  4'b0110;
     localparam ALU_NOT =  4'b0111;
+    localparam ALU_GT =   4'b1000;
+    localparam ALU_GTE =  4'b1001;
+    localparam ALU_LT =   4'b1010;
+    localparam ALU_LTE =  4'b1011;
+    localparam ALU_EQ =   4'b1100;
     localparam ALU_default = ALU_PASS;
     
     
@@ -84,7 +94,7 @@ module Control(
     // it only gets worse from here
     
     assign MUX_sel = ((Instruction==INS_STA & StateCount==5) | (Instruction==INS_MVA & StateCount==2)) ? MUX_ACC : (
-                     (StateCount == 3 & (Instruction==INS_ADD | Instruction==INS_SUB | Instruction==INS_AND | Instruction==INS_OR | Instruction==INS_XOR | Instruction==INS_XOR)) ? MUX_DR : (
+                     (StateCount == 2 & (Instruction==INS_ADD|Instruction==INS_SUB|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT|Instruction==INS_GT|Instruction==INS_GTE|Instruction==INS_LT|Instruction==INS_LTE|Instruction==INS_EQ)) ? MUX_DR : (
                      (StateCount == 1 | Instruction==INS_SUBI | Instruction==INS_ADDI | Instruction==INS_LDI | (Instruction==INS_LDA & StateCount == 5) | ((Instruction==INS_LDA|Instruction==INS_STA|Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ) & (StateCount==2|StateCount==3))) ? MUX_MEM : MUX_default ));
     
     assign ALU_op =  Instruction==INS_CLA ? ALU_ZERO : (
@@ -92,14 +102,19 @@ module Control(
                         Instruction==INS_OR ? ALU_OR: (
                         Instruction==INS_XOR ? ALU_XOR : (
                         Instruction==INS_NOT ? ALU_NOT : (
+                        Instruction==INS_GT ? ALU_GT : (
+                        Instruction==INS_GTE ? ALU_GTE : (
+                        Instruction==INS_LT ? ALU_LT : (
+                        Instruction==INS_LTE ? ALU_LTE : (
+                        Instruction==INS_EQ ? ALU_EQ : (
                         (Instruction==INS_ADD | Instruction==INS_ADDI) ? ALU_ADD : (
                         (Instruction==INS_SUB | Instruction==INS_SUBI) ? ALU_SUB : ALU_default
-                        )))))
+                        ))))))))))
                     );
                     
-    assign MemoryWE = (Instruction == INS_STA & StateCount == 5) ? 1 : 0;
+    assign memory_WE = (Instruction == INS_STA & StateCount == 5) ? 1 : 0;
     
-    assign clear = ((StateCount==2 & (Instruction==INS_NOP|Instruction==INS_LDI|Instruction==INS_MVA|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT)) |
+    assign clear = ((StateCount==2 & (Instruction==INS_NOP|Instruction==INS_LDI|Instruction==INS_MVA|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT|Instruction==INS_GT|Instruction==INS_GTE|Instruction==INS_LT|Instruction==INS_LTE|Instruction==INS_EQ)) |
                     (StateCount==4 & (Instruction==INS_JMP|Instruction==INS_JMPZ|Instruction==INS_JPNZ)) |
                     (StateCount==5 & (Instruction==INS_STA|Instruction==INS_LDA))
                     ) ? 1:0;
@@ -130,15 +145,15 @@ module Control(
     assign AB_sel  = (StateCount == 0) ? 1:0;
     
     
-    assign AC_load = ((StateCount==2 & (Instruction==INS_LDI|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT)) |
-                      (Instruction==INS_LDA & StateCount==4)
+    assign AC_load = ((StateCount==2 & (Instruction==INS_LDI|Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT|Instruction==INS_GT|Instruction==INS_GTE|Instruction==INS_LT|Instruction==INS_LTE|Instruction==INS_EQ)) |
+                      (Instruction==INS_LDA & StateCount==5)
                      ) ? 1:0;
                      
     assign IR_load = (StateCount==1) ? 1:0;
     
-    assign DR_load = (Instruction==INS_MVA) ? 1:0;
+    assign DR_load = (StateCount==2 & Instruction==INS_MVA) ? 1:0;
     
-    assign ZC_load = (Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT) ? 1:0;
+    assign ZC_load = (StateCount==2 & (Instruction==INS_ADD|Instruction==INS_ADDI|Instruction==INS_SUB|Instruction==INS_SUBI|Instruction==INS_CLA|Instruction==INS_AND|Instruction==INS_OR|Instruction==INS_XOR|Instruction==INS_NOT|Instruction==INS_GT|Instruction==INS_GTE|Instruction==INS_LT|Instruction==INS_LTE|Instruction==INS_EQ)) ? 1:0;
     
     assign dev_state_count  = StateCount;
     //assign dev_clear        = clear;

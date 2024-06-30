@@ -1,0 +1,5 @@
+@loop1
+ADDI 0x01
+ADDI 0x01
+SUBI 0x01
+JMP @loop1
