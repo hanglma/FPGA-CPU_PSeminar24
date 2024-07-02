@@ -43,13 +43,15 @@ module top(
         .ProgrammingData(io.ProgrammingData)
     );
     
-    RAM ram(
+    FibonacciRAM ram(
         .clk(prog.mem_clk),
         .WE(prog.MemWE),
         
         .Address(prog.MemAddressBus),
         .ReadDataBus(prog.MemReadBus),
-        .WriteDataBus(prog.MemWriteBus)
+        .WriteDataBus(prog.MemWriteBus),
+        
+        .fibonacciResult(io.fibonacciResult)
     );
     
     cpu core0(

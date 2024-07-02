@@ -29,13 +29,15 @@ module PPB_Mapping(
     input dev_tl_load,
     input dev_th_load,
     input dev_ab_sel,
+    input [7:0] fibonacciResult,
     
     output clk_auto_en,
     output clk_step,
     output reset,
     output programming_en,
     output [7:0] ProgrammingAddress,
-    output [7:0] ProgrammingData
+    output [7:0] ProgrammingData,
+    output fibonacciProg
     
     );
     
@@ -45,6 +47,7 @@ module PPB_Mapping(
     assign ProgrammingAddress = device_inputs[3:10];
     assign ProgrammingData = device_inputs[11:18];
     assign programming_enable = device_inputs[19];
+    assign fibonacciProg = device_inputs[20];
     
     assign device_outputs[0:7] = DataBus;
     assign device_outputs[8:23] = AddressBus;
@@ -72,5 +75,6 @@ module PPB_Mapping(
     assign device_outputs[94] = dev_tl_load;
     assign device_outputs[95] = dev_th_load;
     assign device_outputs[96] = dev_ab_sel;
+    assign device_outputs[97:104] = fibonacciResult;
     
 endmodule
